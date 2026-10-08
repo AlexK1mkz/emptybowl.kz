@@ -1169,43 +1169,54 @@ class Component extends DCLogic {
 }
 </script>
 
-<!-- ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ: POP-UP -->
-<div id="eb-privacy" role="dialog" aria-modal="true" aria-labelledby="eb-privacy-title" hidden style="position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(26,20,16,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
-  <div style="position:relative;width:min(100%,860px);height:min(90vh,920px);background:#F4ECE2;border-radius:24px;overflow:hidden;box-shadow:0 24px 64px rgba(26,20,16,.35);display:flex;flex-direction:column">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px 14px 24px;border-bottom:1px solid rgba(202,168,147,.4)">
-      <p id="eb-privacy-title" style="margin:0;font:600 12px/1 'Mulish',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7563"><span data-ru>Политика конфиденциальности</span><span data-kk hidden>Құпиялылық саясаты</span></p>
-      <button type="button" id="eb-privacy-close" aria-label="Закрыть" style="width:44px;height:44px;border-radius:999px;border:1.5px solid #1A1410;background:transparent;color:#1A1410;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
-    </div>
-    <iframe id="eb-privacy-frame" title="Политика конфиденциальности" src="about:blank" loading="lazy" style="flex:1;width:100%;border:0;background:#F4ECE2"></iframe>
-  </div>
-</div>
+<!-- ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ: POP-UP (создаётся только по клику на ссылку) -->
 <script>
 (function () {
-  var box = document.getElementById('eb-privacy'), frame = document.getElementById('eb-privacy-frame'), closeBtn = document.getElementById('eb-privacy-close');
-  var lastFocus = null, scrollY = 0;
+  var ID = 'eb-privacy', lastFocus = null;
   function lang() { return (document.documentElement.lang || 'ru').indexOf('kk') === 0 ? 'kk' : 'ru'; }
-  function open() {
+  function inPath(e, test) {
+    var path = e.composedPath ? e.composedPath() : [];
+    if (!path.length) { var n = e.target; while (n) { path.push(n); n = n.parentNode; } }
+    for (var i = 0; i < path.length; i++) if (path[i] && path[i].nodeType === 1 && test(path[i])) return path[i];
+    return null;
+  }
+  function build() {
     var l = lang();
-    box.querySelectorAll('[data-ru]').forEach(function (e) { e.hidden = l === 'kk'; });
-    box.querySelectorAll('[data-kk]').forEach(function (e) { e.hidden = l !== 'kk'; });
-    closeBtn.setAttribute('aria-label', l === 'kk' ? 'Жабу' : 'Закрыть');
-    frame.src = 'privacy.html?embed=1&lang=' + l;
-    lastFocus = document.activeElement; scrollY = window.scrollY;
-    box.hidden = false; document.body.style.overflow = 'hidden';
-    closeBtn.focus();
+    var box = document.createElement('div');
+    box.id = ID; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', l === 'kk' ? 'Құпиялылық саясаты' : 'Политика конфиденциальности');
+    box.style.cssText = 'position:fixed;inset:0;z-index:2147483000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(26,20,16,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)';
+    box.innerHTML =
+      '<div style="position:relative;width:min(100%,860px);height:min(90vh,920px);background:#F4ECE2;border-radius:24px;overflow:hidden;box-shadow:0 24px 64px rgba(26,20,16,.35);display:flex;flex-direction:column">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px 14px 24px;border-bottom:1px solid rgba(202,168,147,.4)">' +
+          '<p style="margin:0;font:600 12px/1 Mulish,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7563">' + (l === 'kk' ? 'Құпиялылық саясаты' : 'Политика конфиденциальности') + '</p>' +
+          '<button type="button" data-eb-privacy-close aria-label="' + (l === 'kk' ? 'Жабу' : 'Закрыть') + '" style="width:44px;height:44px;border-radius:999px;border:1.5px solid #1A1410;background:transparent;color:#1A1410;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>' +
+        '</div>' +
+        '<iframe title="' + (l === 'kk' ? 'Құпиялылық саясаты' : 'Политика конфиденциальности') + '" src="privacy.html?embed=1&lang=' + l + '" style="flex:1;width:100%;border:0;background:#F4ECE2"></iframe>' +
+      '</div>';
+    return box;
+  }
+  function open() {
+    if (document.getElementById(ID)) return;
+    lastFocus = document.activeElement;
+    var box = build();
+    document.body.appendChild(box);
+    document.body.style.overflow = 'hidden';
+    var btn = box.querySelector('[data-eb-privacy-close]'); if (btn) btn.focus();
   }
   function close() {
-    box.hidden = true; document.body.style.overflow = ''; frame.src = 'about:blank';
-    if (lastFocus && lastFocus.focus) lastFocus.focus();
+    var box = document.getElementById(ID);
+    if (!box) return;
+    box.parentNode.removeChild(box);
+    document.body.style.overflow = '';
+    if (lastFocus && lastFocus.focus) { try { lastFocus.focus(); } catch (e) {} }
   }
   document.addEventListener('click', function (e) {
-    var path = e.composedPath ? e.composedPath() : [e.target], a = null;
-    for (var i = 0; i < path.length; i++) { var el = path[i]; if (el && el.tagName === 'A' && el.hasAttribute && el.hasAttribute('data-privacy')) { a = el; break; } }
-    if (a) { e.preventDefault(); e.stopPropagation(); open(); }
+    if (inPath(e, function (el) { return el.tagName === 'A' && el.hasAttribute('data-privacy'); })) { e.preventDefault(); e.stopPropagation(); open(); return; }
+    if (inPath(e, function (el) { return el.hasAttribute && el.hasAttribute('data-eb-privacy-close'); })) { e.preventDefault(); close(); return; }
+    var box = document.getElementById(ID);
+    if (box && e.target === box) close();
   }, true);
-  closeBtn.addEventListener('click', close);
-  box.addEventListener('click', function (e) { if (e.target === box) close(); });
-  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); }, true);
   window.addEventListener('message', function (e) { if (e.data === 'eb-privacy-close') close(); });
 })();
 </script>
