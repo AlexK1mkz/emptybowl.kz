@@ -466,7 +466,7 @@
         <h2 id="h-schedule" class="r-h2" style="margin:0 0 24px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;line-height:1.1">{{ t.scheduleH2 }}</h2>
         <p style="margin:0 0 8px;color:#6B5A4C;max-width:400px">{{ t.scheduleSub }}</p>
         <p style="margin:0 0 32px;font-size:14px;color:#8A7563">{{ t.scheduleTz }}</p>
-        <a href="{{ icsHref }}" download="pustaya-chasha-astana.ics" class="eb-ghost" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;border:1.5px solid #1A1410;color:#1A1410;font-weight:600;font-size:14px;transition:all .2s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>{{ t.addCal }}</a>
+        <a href="pustaya-chasha-astana.ics" data-addcal class="eb-ghost" style="display:inline-flex;align-items:center;gap:10px;height:56px;padding:0 28px;border-radius:999px;border:1.5px solid #1A1410;color:#1A1410;font-weight:600;font-size:14px;transition:all .2s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"></rect><path d="M3 10h18M8 3v4M16 3v4"></path></svg>{{ t.addCal }}</a>
         <p style="margin:32px 0 0;font-size:14px;color:#8A7563">{{ t.scheduleNote }}</p>
       </div>
       <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;position:relative">
@@ -586,7 +586,7 @@
           <p style="margin:0;color:#CAA893;font-size:16px">{{ t.successP }}</p>
           <div class="r-stack" style="display:flex;gap:12px;flex-wrap:wrap">
             <a href="{{ waLeadHref }}" target="_self" onClick="{{ trackContact }}" class="eb-cta" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 32px;border-radius:999px;background:#FF764C;color:#1A1410;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;transition:background .2s"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path></svg>{{ t.waNow }}</a>
-            <a href="{{ icsHref }}" download="pustaya-chasha-astana.ics" style="display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;border:1.5px solid #CAA893;color:#F4ECE2;font-weight:600;font-size:14px">{{ t.addCal }}</a>
+            <a href="pustaya-chasha-astana.ics" data-addcal style="display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;border:1.5px solid #CAA893;color:#F4ECE2;font-weight:600;font-size:14px">{{ t.addCal }}</a>
           </div>
           <p style="margin:0;font-size:13px;color:#8A7563">{{ t.requestNo }} {{ submitId }}</p>
         </div>
@@ -855,7 +855,7 @@ class Component extends DCLogic {
       fName: 'Имя и фамилия', fPhone: 'Телефон (WhatsApp)', fCity: 'Город семинара', fReturning: 'Был(а) на семинаре ранее?', yes: 'Да', noFirst: 'Нет, впервые', addDetails: '+ Добавить детали', fResidence: 'Город проживания', fHotel: 'Нужно проживание в отеле Alanda по спеццене', fSource: 'Откуда узнали о семинаре', choose: 'Выберите', srcFriends: 'От друзей', srcBefore: 'Был(а) ранее', srcOther: 'Другое', fComment: 'Вопрос организатору',
       consent: 'Согласен(на) на обработку персональных данных в соответствии с Законом РК «О персональных данных и их защите».', privacy: 'Политика конфиденциальности', waitlistNote: 'Заявка попадёт в лист ожидания — напишем, как только появятся даты.',
       toPay: 'К оплате', toPaySpecial: 'Спеццена для участников прошлых семинаров', deposit: 'Предоплата сейчас', tbd: 'уточняется', sending: 'Отправляем…', waitlistBtn: 'Встать в лист ожидания', noPayNote: 'Заявка ни к чему не обязывает — оплата только после разговора с Динарой.',
-      waLead: 'Здравствуйте, Динара! Я {name}, оставил(а) заявку №{id} на семинар «Пустая Чаша» {city}. Интересует участие — подскажите, пожалуйста, по оплате и дальнейшим шагам.', waCityAstana: 'в Астане, 22–25 октября', waCityAlmaty: 'в Алматы (лист ожидания)', waNoId: 'без номера', waMyPhone: 'Мой номер:',
+      waLead: 'Здравствуйте, Динара! Меня зовут {name}. Моя заявка на семинар «Пустая Чаша» {city} отправлена через сайт. Подскажите, пожалуйста, по оплате и дальнейшим шагам.', waCityAstana: 'в Астане, 22–25 октября', waCityAlmaty: 'в Алматы (лист ожидания)', waNoId: 'без номера', waMyPhone: 'Мой номер:',
       finalH2: 'Можно продолжать искать новые ответы. А можно один раз посмотреть на того, кто задаёт вопросы.', finalP: 'Иногда следующий шаг начинается не с того, чтобы добавить ещё что-то. А с того, чтобы освободить место.', finalMeta: '«Пустая Чаша» · Кирилл Ярхо · Астана · 22–25 октября 2026 · 28 участников · 4 дня',
       errName: 'Введите имя — минимум 2 символа', errPhone: 'Введите 10 цифр после +7', errEmail: 'Проверьте email — нужен формат name@mail.kz', errConsent: 'Поставьте галочку согласия — без неё мы не можем принять заявку',
       successH: 'Спасибо! Место предварительно за вами.', successP: 'Сейчас откроется WhatsApp с Динарой — сообщение уже заполнено, просто отправьте его. Если не открылся — нажмите кнопку.', requestNo: 'Номер заявки:', waNow: 'Открыть WhatsApp',
@@ -933,7 +933,7 @@ class Component extends DCLogic {
       fName: 'Аты-жөніңіз', fPhone: 'Телефон (WhatsApp)', fCity: 'Семинар қаласы', fReturning: 'Бұрын семинарға қатыстыңыз ба?', yes: 'Иә', noFirst: 'Жоқ, алғаш рет', addDetails: '+ Толығырақ', fResidence: 'Тұратын қалаңыз', fHotel: 'Alanda қонақүйінде арнайы бағамен орын қажет', fSource: 'Біз туралы қайдан білдіңіз?', choose: 'Таңдаңыз', srcFriends: 'Достарымнан', srcBefore: 'Бұрын қатыстым', srcOther: 'Басқа', fComment: 'Ұйымдастырушыға сұрағыңыз',
       consent: 'Жеке деректерімді ҚР «Дербес деректер және оларды қорғау туралы» заңына сәйкес өңдеуге келісемін.', privacy: 'Құпиялылық саясаты', waitlistNote: 'Өтінім күту тізіміне түседі — күндері белгілі болған бойда хабарласамыз.',
       toPay: 'Төленетін сома', toPaySpecial: 'Бұрынғы қатысушыларға арнайы баға', deposit: 'Алдын ала төлем', tbd: 'нақтыланады', sending: 'Жіберілуде…', waitlistBtn: 'Күту тізіміне тұру', noPayNote: 'Өтінім ешқандай міндеттеме жүктемейді — төлем тек Динарамен сөйлескеннен кейін.',
-      waLead: 'Сәлеметсіз бе, Динара! Мен {name}, «Бос Кесе» семинарына {city} №{id} өтінім қалдырдым. Қатысуға қызығамын — төлем және келесі қадамдар туралы айтып жіберіңізші.', waCityAstana: 'Астанада, 22–25 қазан', waCityAlmaty: 'Алматыда (күту тізімі)', waNoId: 'нөмірсіз', waMyPhone: 'Нөмірім:',
+      waLead: 'Сәлеметсіз бе, Динара! Менің атым {name}. «Бос Кесе» семинарына {city} өтінімімді сайт арқылы жібердім. Төлем және келесі қадамдар туралы айтып жіберіңізші.', waCityAstana: 'Астанада, 22–25 қазан', waCityAlmaty: 'Алматыда (күту тізімі)', waNoId: 'нөмірсіз', waMyPhone: 'Нөмірім:',
       finalH2: 'Жаңа жауаптарды іздей беруге болады. Ал бір рет сұрақ қойып отырған адамның өзіне қарауға да болады.', finalP: 'Кейде келесі қадам тағы бір нәрсе қосудан емес, орын босатудан басталады.', finalMeta: '«Бос Кесе» · Кирилл Ярхо · Астана · 2026 жылғы 22–25 қазан · 28 қатысушы · 4 күн',
       errName: 'Атыңызды енгізіңіз — кемінде 2 таңба', errPhone: '+7-ден кейін 10 сан енгізіңіз', errEmail: 'Email-ді тексеріңіз — name@mail.kz форматы', errConsent: 'Келісім белгісін қойыңыз — онсыз өтінімді қабылдай алмаймыз',
       successH: 'Рақмет! Орын алдын ала сізде.', successP: 'Қазір Динарамен WhatsApp ашылады — хабарлама дайын, тек жіберіңіз. Ашылмаса — түймені басыңыз.', requestNo: 'Өтінім нөмірі:', waNow: 'WhatsApp-ты ашу',
@@ -1080,7 +1080,7 @@ class Component extends DCLogic {
       } else {
         await new Promise(r => setTimeout(r, 1200));
         if ((this.props.demoSubmit ?? 'success') === 'error') throw new Error('demo');
-        id = 'EB-' + new Date().toISOString().slice(2, 10).replace(/-/g, '') + '-DEMO';
+        id = 'EB-' + new Date().toISOString().slice(2, 10).replace(/-/g, '') + '-' + String(Date.now()).slice(-4);
       }
       this.track('Lead');
       const waUrl = this.waLeadUrl(data, id);
@@ -1218,6 +1218,70 @@ class Component extends DCLogic {
   }, true);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); }, true);
   window.addEventListener('message', function (e) { if (e.data === 'eb-privacy-close') close(); });
+})();
+</script>
+
+<!-- ДОБАВИТЬ В КАЛЕНДАРЬ: выбор Google / Apple / Outlook (создаётся по клику) -->
+<script>
+(function () {
+  var ID = 'eb-addcal';
+  var EV = {
+    start: '20261022T110000Z', end: '20261025T090000Z',               // 22.10 16:00 – 25.10 14:00 Астана (UTC+5)
+    startLocal: '2026-10-22T16:00:00', endLocal: '2026-10-25T14:00:00',
+    location: 'Отель Alanda, пр. Тауелсиздик, 33, Астана',
+    url: 'https://emptybowl.kz/'
+  };
+  var T = {
+    ru: { title: 'Семинар «Пустая Чаша» с Кириллом Ярхо — Астана', details: 'Четыре дня семинара. 22 октября 16:00–21:00, 23–24 октября 9:30–20:30, 25 октября 9:30–14:00. Время астанинское. Подробности: https://emptybowl.kz/', h: 'Добавить в календарь', g: 'Google Календарь', a: 'Apple · iPhone · Mac', o: 'Outlook', f: 'Скачать файл .ics', close: 'Закрыть', ics: 'pustaya-chasha-astana.ics' },
+    kk: { title: '«Бос Кесе» семинары, Кирилл Ярхо — Астана', details: 'Төрт күндік семинар. 22 қазан 16:00–21:00, 23–24 қазан 9:30–20:30, 25 қазан 9:30–14:00. Астана уақыты. Толығырақ: https://emptybowl.kz/', h: 'Күнтізбеге қосу', g: 'Google Күнтізбе', a: 'Apple · iPhone · Mac', o: 'Outlook', f: '.ics файлын жүктеу', close: 'Жабу', ics: 'bos-kese-astana.ics' }
+  };
+  function lang() { return (document.documentElement.lang || 'ru').indexOf('kk') === 0 ? 'kk' : 'ru'; }
+  function enc(x) { return encodeURIComponent(x); }
+  function links(t) {
+    return {
+      google: 'https://calendar.google.com/calendar/render?action=TEMPLATE&text=' + enc(t.title) + '&dates=' + EV.start + '/' + EV.end + '&details=' + enc(t.details) + '&location=' + enc(EV.location) + '&ctz=Asia/Almaty',
+      outlook: 'https://outlook.live.com/calendar/0/deeplink/compose?path=/calendar/action/compose&rru=addevent&subject=' + enc(t.title) + '&startdt=' + EV.startLocal + '&enddt=' + EV.endLocal + '&location=' + enc(EV.location) + '&body=' + enc(t.details),
+      apple: t.ics
+    };
+  }
+  function inPath(e, test) {
+    var path = e.composedPath ? e.composedPath() : [];
+    if (!path.length) { var n = e.target; while (n) { path.push(n); n = n.parentNode; } }
+    for (var i = 0; i < path.length; i++) if (path[i] && path[i].nodeType === 1 && test(path[i])) return path[i];
+    return null;
+  }
+  var btn = 'display:flex;align-items:center;gap:14px;width:100%;height:56px;padding:0 20px;border-radius:999px;border:1.5px solid #1A1410;background:transparent;color:#1A1410;font:600 15px/1 Mulish,sans-serif;text-decoration:none;cursor:pointer;box-sizing:border-box';
+  function build() {
+    var l = lang(), t = T[l], L = links(t);
+    var ua = navigator.userAgent || '', apple = /iPhone|iPad|Macintosh/.test(ua);
+    var box = document.createElement('div');
+    box.id = ID; box.setAttribute('role', 'dialog'); box.setAttribute('aria-modal', 'true'); box.setAttribute('aria-label', t.h);
+    box.style.cssText = 'position:fixed;inset:0;z-index:2147483000;display:flex;align-items:flex-end;justify-content:center;padding:16px;background:rgba(26,20,16,.55);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)';
+    var items = [
+      '<a href="' + L.apple + '" data-eb-cal-pick style="' + btn + '"><span style="width:28px;text-align:center;font-size:18px"></span>' + t.a + '</a>',
+      '<a href="' + L.google + '" target="_blank" rel="noopener" data-eb-cal-pick style="' + btn + '"><span style="width:28px;text-align:center;font-weight:700;font-size:16px">G</span>' + t.g + '</a>',
+      '<a href="' + L.outlook + '" target="_blank" rel="noopener" data-eb-cal-pick style="' + btn + '"><span style="width:28px;text-align:center;font-weight:700;font-size:16px">O</span>' + t.o + '</a>',
+      '<a href="' + t.ics + '" download data-eb-cal-pick style="' + btn + ';border-color:#CAA893;color:#6B5A4C;height:48px;font-weight:400"><span style="width:28px;text-align:center">&#8681;</span>' + t.f + '</a>'
+    ];
+    if (!apple) { var first = items.shift(); items.splice(2, 0, first); }   // не-Apple: Google первым
+    box.innerHTML =
+      '<div style="width:min(100%,420px);background:#F4ECE2;border-radius:24px;padding:24px;box-shadow:0 24px 64px rgba(26,20,16,.35);display:flex;flex-direction:column;gap:12px;margin-bottom:max(8px,env(safe-area-inset-bottom))">' +
+        '<div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px">' +
+          '<p style="margin:0;font:600 12px/1 Mulish,sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7563">' + t.h + '</p>' +
+          '<button type="button" data-eb-cal-close aria-label="' + t.close + '" style="width:40px;height:40px;border-radius:999px;border:1.5px solid #1A1410;background:transparent;color:#1A1410;display:flex;align-items:center;justify-content:center;cursor:pointer"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>' +
+        '</div>' + items.join('') +
+      '</div>';
+    return box;
+  }
+  function open() { if (document.getElementById(ID)) return; document.body.appendChild(build()); }
+  function close() { var b = document.getElementById(ID); if (b) b.parentNode.removeChild(b); }
+  document.addEventListener('click', function (e) {
+    if (inPath(e, function (el) { return el.tagName === 'A' && el.hasAttribute('data-addcal'); })) { e.preventDefault(); e.stopPropagation(); open(); return; }
+    if (inPath(e, function (el) { return el.hasAttribute && el.hasAttribute('data-eb-cal-pick'); })) { setTimeout(close, 300); return; }
+    if (inPath(e, function (el) { return el.hasAttribute && el.hasAttribute('data-eb-cal-close'); })) { e.preventDefault(); close(); return; }
+    var box = document.getElementById(ID); if (box && e.target === box) close();
+  }, true);
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); }, true);
 })();
 </script>
 </body>
