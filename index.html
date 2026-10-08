@@ -672,7 +672,7 @@
 
           <label style="display:flex;gap:12px;align-items:flex-start;cursor:pointer;font-size:14px;color:#CAA893;min-height:44px">
             <input type="checkbox" name="consent" checked="{{ form.consent }}" onChange="{{ setConsent }}" aria-invalid="{{ consentInvalid }}" style="width:20px;height:20px;margin:1px 0 0;accent-color:#FF764C;flex-shrink:0">
-            <span>{{ t.consent }} <a href="#privacy" style="color:#F4ECE2;text-decoration:underline">{{ t.privacy }}</a> *</span>
+            <span>{{ t.consent }} <a href="privacy.html" data-privacy style="color:#F4ECE2;text-decoration:underline">{{ t.privacy }}</a> *</span>
           </label>
           <sc-if value="{{ errors.consent }}" hint-placeholder-val="{{ false }}"><p role="alert" style="margin:-16px 0 0;font-size:14px;color:#FFB199">{{ errors.consent }}</p></sc-if>
 
@@ -749,7 +749,7 @@
       <p style="margin:0;font-size:14px;display:flex;align-items:center"><img class="eb-flag" src="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/kz.svg" alt="{{ t.kz }}" width="16" height="12">Астана · Алматы</p>
       <div class="r-wrap" style="display:flex;gap:24px;font-size:14px">
         <a href="{{ waHref }}" target="_blank" rel="noopener" style="color:#CAA893">{{ cfg.phoneFmt }}</a>
-        <a href="#privacy" style="color:#CAA893">{{ t.privacy }}</a>
+        <a href="privacy.html" data-privacy style="color:#CAA893">{{ t.privacy }}</a>
       </div>
       <p style="margin:0;font-size:13px">© 2026 · {{ t.organizer }}</p>
     </div>
@@ -1167,6 +1167,47 @@ class Component extends DCLogic {
     };
   }
 }
+</script>
+
+<!-- ПОЛИТИКА КОНФИДЕНЦИАЛЬНОСТИ: POP-UP -->
+<div id="eb-privacy" role="dialog" aria-modal="true" aria-labelledby="eb-privacy-title" hidden style="position:fixed;inset:0;z-index:1000;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(26,20,16,.6);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px)">
+  <div style="position:relative;width:min(100%,860px);height:min(90vh,920px);background:#F4ECE2;border-radius:24px;overflow:hidden;box-shadow:0 24px 64px rgba(26,20,16,.35);display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 16px 14px 24px;border-bottom:1px solid rgba(202,168,147,.4)">
+      <p id="eb-privacy-title" style="margin:0;font:600 12px/1 'Mulish',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#8A7563"><span data-ru>Политика конфиденциальности</span><span data-kk hidden>Құпиялылық саясаты</span></p>
+      <button type="button" id="eb-privacy-close" aria-label="Закрыть" style="width:44px;height:44px;border-radius:999px;border:1.5px solid #1A1410;background:transparent;color:#1A1410;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+    </div>
+    <iframe id="eb-privacy-frame" title="Политика конфиденциальности" src="about:blank" loading="lazy" style="flex:1;width:100%;border:0;background:#F4ECE2"></iframe>
+  </div>
+</div>
+<script>
+(function () {
+  var box = document.getElementById('eb-privacy'), frame = document.getElementById('eb-privacy-frame'), closeBtn = document.getElementById('eb-privacy-close');
+  var lastFocus = null, scrollY = 0;
+  function lang() { return (document.documentElement.lang || 'ru').indexOf('kk') === 0 ? 'kk' : 'ru'; }
+  function open() {
+    var l = lang();
+    box.querySelectorAll('[data-ru]').forEach(function (e) { e.hidden = l === 'kk'; });
+    box.querySelectorAll('[data-kk]').forEach(function (e) { e.hidden = l !== 'kk'; });
+    closeBtn.setAttribute('aria-label', l === 'kk' ? 'Жабу' : 'Закрыть');
+    frame.src = 'privacy.html?embed=1&lang=' + l;
+    lastFocus = document.activeElement; scrollY = window.scrollY;
+    box.hidden = false; document.body.style.overflow = 'hidden';
+    closeBtn.focus();
+  }
+  function close() {
+    box.hidden = true; document.body.style.overflow = ''; frame.src = 'about:blank';
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  document.addEventListener('click', function (e) {
+    var path = e.composedPath ? e.composedPath() : [e.target], a = null;
+    for (var i = 0; i < path.length; i++) { var el = path[i]; if (el && el.tagName === 'A' && el.hasAttribute && el.hasAttribute('data-privacy')) { a = el; break; } }
+    if (a) { e.preventDefault(); e.stopPropagation(); open(); }
+  }, true);
+  closeBtn.addEventListener('click', close);
+  box.addEventListener('click', function (e) { if (e.target === box) close(); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && !box.hidden) close(); });
+  window.addEventListener('message', function (e) { if (e.data === 'eb-privacy-close') close(); });
+})();
 </script>
 </body>
 </html>
