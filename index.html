@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>window.EB_FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbz74_9y0xKlP4-uVx7YK1-9pAAMoWirXb3ZqUwbQshSZBmftHnOLBSgwz37w275yaM-7w/exec'; /* приём заявок → Google Таблица «Empty Bowl — Заявки с сайта» */</script>
 <title>Семинар «Пустая Чаша» в Астане | Кирилл Ярхо</title>
 <meta name="description" content="Четыре дня в камерной группе до 28 человек с Кириллом Ярхо, учеником Майка Боксхолла. Астана, отель Alanda. Без лекций и техник — через тишину, тело и присутствие.">
 <link rel="canonical" href="https://emptybowl.kz/">
@@ -35,6 +36,7 @@
 <meta property="og:image:secure_url" content="https://emptybowl.kz/assets/og-v2.jpg">
 <meta property="og:image:type" content="image/jpeg">
 <script src="./support.js"></script>
+<style id="eb-header-autohide">body header{transition:transform .3s ease, box-shadow .3s ease;will-change:transform}html.eb-hdr-hidden body header{transform:translateY(-100%)}@media (prefers-reduced-motion:reduce){body header{transition:none}}</style>
 </head>
 <body>
 <x-dc>
@@ -103,9 +105,12 @@
     @keyframes ebBlur{from{opacity:0;filter:blur(8px)}to{opacity:1;filter:blur(0)}}
     @keyframes ebPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.35}50%{transform:translate(-50%,-50%) scale(1.05);opacity:.2}}
     @keyframes ebMarq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-    .eb-marq{display:flex;gap:16px;width:max-content;animation:ebMarq 70s linear infinite}
-    .eb-marq-wrap:hover .eb-marq,.eb-marq-wrap:active .eb-marq{animation-play-state:paused}
-    .eb-marq img{height:320px;width:auto;border-radius:16px;object-fit:cover;flex-shrink:0}
+    .eb-marq{display:flex;gap:16px;width:max-content}
+    .eb-marq-wrap{overflow-x:auto !important;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;cursor:grab;scroll-behavior:auto}
+    .eb-marq-wrap::-webkit-scrollbar{display:none}
+    .eb-marq-wrap.is-drag{cursor:grabbing}
+    .eb-marq img{-webkit-user-drag:none;user-select:none;-webkit-user-select:none}
+        .eb-marq img{height:320px;width:auto;border-radius:16px;object-fit:cover;flex-shrink:0}
     .eb-dot{width:8px;height:8px;border-radius:50%;background:#CAA893;transition:background .2s,transform .2s}
     .eb-dot.on{background:#1A1410;transform:scale(1.25)}
     @keyframes ebSpin{to{transform:rotate(360deg)}}
@@ -141,7 +146,7 @@
       .eb-marq img{height:220px}
       .r-dots{display:flex !important}
     }
-    @media (prefers-reduced-motion:reduce){.eb-marq{animation:none;width:auto;overflow-x:auto}.eb-marq>img:nth-child(n+20){display:none}}
+    @media (prefers-reduced-motion:reduce){.eb-marq>img:nth-child(n+20){display:none}}
     @media (prefers-reduced-motion:reduce){.eb-up,.eb-ring,.eb-img{animation:none !important}.eb-ring{opacity:.35 !important}.eb-pause{opacity:1;transition:none}html{scroll-behavior:auto}}
   </style>
 </helmet>
@@ -810,7 +815,7 @@ class Component extends DCLogic {
       map2gis: 'https://go.2gis.com/mewT2',
       mapYandex: 'https://yandex.kz/maps/?pt=71.463978,51.138759&z=17&l=map',
       mapRoute: 'https://yandex.kz/maps/?rtext=~51.138759,71.463978&rtt=auto',
-      FORM_ENDPOINT: '', // URL Google Apps Script → .../exec
+      FORM_ENDPOINT: 'https://script.google.com/macros/s/AKfycbz74_9y0xKlP4-uVx7YK1-9pAAMoWirXb3ZqUwbQshSZBmftHnOLBSgwz37w275yaM-7w/exec', // URL Google Apps Script → .../exec
       reviews: [{ name: 'Алексей', id: 'zB50QqZYPKY' }, { name: 'Дмитрий', id: 'IljAbCov27o' }, { name: 'Марина', id: 'RcE1sJHUGl0' }, { name: 'Василий', id: 'xo0Hxw6K7fo' }, { name: 'Наталья', id: 'nfs5l4TSZaw' }],
       organizerReview: { name: 'Динара', id: 'e6QIwicDvvA', city: 'Барселона' },
       atmosphereId: '83KUyKsYQxk', podcastId: 'GTobHS1Gf-0', filmId: 'aAGMMZP6l3Q',
@@ -1105,8 +1110,9 @@ class Component extends DCLogic {
     this.setState({ status: 'sending' });
     try {
       let id = '';
-      if (this.CFG.FORM_ENDPOINT) {
-        const r = await fetch(this.CFG.FORM_ENDPOINT, { method: 'POST', body: JSON.stringify(data) });
+      const EP = this.CFG.FORM_ENDPOINT || window.EB_FORM_ENDPOINT;
+      if (EP) {
+        const r = await fetch(EP, { method: 'POST', body: JSON.stringify(data) });
         const j = await r.json(); if (!j.ok) throw new Error(j.error || 'fail'); id = j.id || '';
       } else {
         await new Promise(r => setTimeout(r, 1200));
@@ -1313,6 +1319,85 @@ class Component extends DCLogic {
     var box = document.getElementById(ID); if (box && e.target === box) close();
   }, true);
   document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); }, true);
+})();
+</script>
+
+<!-- КАРУСЕЛЬ СООБЩЕСТВА: автопрокрутка + свайп/перетаскивание -->
+<script>
+(function () {
+  var SECONDS_PER_LOOP = 70, RESUME_MS = 2500;
+  var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var pos = -1, last = 0, pausedUntil = 0, hover = false, drag = null, bound = null;
+  function wrap() { return document.querySelector('.eb-marq-wrap'); }
+  function half(w) { var t = w.firstElementChild; return t ? t.scrollWidth / 2 : 0; }
+  function hold(ms) { pausedUntil = Math.max(pausedUntil, performance.now() + (ms == null ? RESUME_MS : ms)); }
+  function bind(w) {
+    if (bound === w) return; bound = w; pos = -1;
+    w.addEventListener('touchstart', function () { hold(60000); }, { passive: true });
+    w.addEventListener('touchend', function () { pausedUntil = 0; hold(); }, { passive: true });
+    w.addEventListener('wheel', function (e) { if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) hold(); }, { passive: true });
+    w.addEventListener('mouseenter', function () { hover = true; });
+    w.addEventListener('mouseleave', function () { hover = false; });
+    w.addEventListener('scroll', function () { if (performance.now() < pausedUntil || drag) pos = w.scrollLeft; }, { passive: true });
+    w.addEventListener('pointerdown', function (e) {
+      if (e.pointerType !== 'mouse' || e.button !== 0) return;
+      drag = { x: e.clientX, left: w.scrollLeft, moved: false }; w.classList.add('is-drag'); hold(60000);
+    });
+    window.addEventListener('pointermove', function (e) {
+      if (!drag) return; var dx = e.clientX - drag.x;
+      if (Math.abs(dx) > 3) drag.moved = true;
+      w.scrollLeft = drag.left - dx; loop(w); pos = w.scrollLeft;
+    });
+    window.addEventListener('pointerup', function () {
+      if (!drag) return; var moved = drag.moved; drag = null; w.classList.remove('is-drag'); pausedUntil = 0; hold();
+      if (moved) { var stop = function (ev) { ev.preventDefault(); ev.stopPropagation(); w.removeEventListener('click', stop, true); }; w.addEventListener('click', stop, true); setTimeout(function () { w.removeEventListener('click', stop, true); }, 50); }
+    });
+  }
+  function loop(w) {
+    var h = half(w); if (!h) return;
+    if (w.scrollLeft >= h) w.scrollLeft -= h;
+    else if (w.scrollLeft <= 0) w.scrollLeft += h;
+  }
+  function tick(now) {
+    var w = wrap();
+    if (w) {
+      bind(w);
+      var h = half(w), dt = last ? Math.min(now - last, 64) : 0;
+      if (h) {
+        if (pos < 0) { pos = 1; w.scrollLeft = 1; }
+        loop(w);
+        if (!reduce && !hover && !drag && now >= pausedUntil) {
+          if (Math.abs(w.scrollLeft - pos) > 2) pos = w.scrollLeft;   // пользователь пролистал — продолжаем с этого места
+          pos += h / SECONDS_PER_LOOP * dt / 1000;
+          if (pos >= h) pos -= h;
+          w.scrollLeft = pos;
+        }
+      }
+    }
+    last = now; requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+</script>
+
+<!-- ШАПКА: прячется при прокрутке вниз, появляется при прокрутке вверх -->
+<script>
+(function () {
+  var root = document.documentElement, lastY = window.scrollY, acc = 0, ticking = false;
+  var TOP_ZONE = 80, THRESHOLD = 12;
+  function update() {
+    ticking = false;
+    var y = Math.max(0, window.scrollY), dy = y - lastY; lastY = y;
+    var h = document.querySelector('body header');
+    var mm = h && h.querySelector('nav.eb-nav:not(.d-nav)'), menuOpen = !!(mm && mm.offsetParent);   // раскрыто мобильное меню — не прячем
+    if (y <= TOP_ZONE || menuOpen) { acc = 0; root.classList.remove('eb-hdr-hidden'); return; }
+    if ((dy > 0) !== (acc > 0)) acc = 0;                        // сменилось направление
+    acc += dy;
+    if (acc > THRESHOLD) root.classList.add('eb-hdr-hidden');
+    else if (acc < -THRESHOLD) root.classList.remove('eb-hdr-hidden');
+  }
+  window.addEventListener('scroll', function () { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+  document.addEventListener('focusin', function (e) { if (e.target.closest && e.target.closest('header')) root.classList.remove('eb-hdr-hidden'); });
 })();
 </script>
 </body>
