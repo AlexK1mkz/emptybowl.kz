@@ -466,10 +466,10 @@
   <!-- БЛИЖАЙШИЕ СЕМИНАРЫ -->
   <section id="dates" data-screen-label="Ближайшие семинары" class="r-sec" style="padding:96px 24px" aria-labelledby="h-dates">
     <div style="max-width:1200px;margin:0 auto">
-      <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563;display:flex;align-items:center"><img class="eb-flag" src="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/kz.svg" alt="{{ t.kz }}" width="16" height="12"><span>Астана · Алматы</span></p>
+      <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563;display:flex;align-items:center"><img class="eb-flag" src="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/kz.svg" alt="{{ t.kz }}" width="16" height="12"><span>Астана</span></p>
       <h2 id="h-dates" class="r-h2" style="margin:0 0 40px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;line-height:1.1;max-width:720px">{{ t.datesH2 }}</h2>
-      <div class="r-2" style="display:grid;grid-template-columns:1fr 1fr;gap:32px">
-        <sc-for list="{{ seminars }}" as="s" hint-placeholder-count="2">
+      <div style="display:grid;grid-template-columns:minmax(0,720px);gap:32px">
+        <sc-for list="{{ seminars }}" as="s" hint-placeholder-count="1">
           <article class="eb-card" style="background:#E8DCCD;border-radius:24px;padding:40px;display:flex;flex-direction:column;gap:24px;position:relative;overflow:hidden">
             <svg aria-hidden="true" viewBox="0 0 160 80" style="position:absolute;right:24px;top:24px;width:140px;height:70px;opacity:.25;pointer-events:none" fill="none" stroke="#C9A24A" stroke-width="1.2" stroke-linejoin="round"><path d="{{ s.silhouette }}"></path></svg>
             <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:16px">
@@ -647,11 +647,9 @@
 
           <div style="display:flex;flex-direction:column;gap:8px">
             <span id="l-city" style="font-size:14px;font-weight:600;color:#CAA893">{{ t.fCity }} *</span>
-            <div role="radiogroup" aria-labelledby="l-city" style="display:grid;grid-template-columns:1fr 1fr;gap:4px;background:#1A1410;border-radius:999px;padding:4px">
+            <div role="radiogroup" aria-labelledby="l-city" style="display:grid;grid-template-columns:1fr;gap:4px;background:#1A1410;border-radius:999px;padding:4px">
               <button type="button" role="radio" aria-checked="{{ isAstana }}" onClick="{{ setAstana }}" style="{{ cityAstanaStyle }}">Астана · {{ cfg.datesShort }}</button>
-              <button type="button" role="radio" aria-checked="{{ isAlmaty }}" onClick="{{ setAlmaty }}" style="{{ cityAlmatyStyle }}">Алматы · {{ t.soon }}</button>
             </div>
-            <sc-if value="{{ isAlmaty }}" hint-placeholder-val="{{ false }}"><p style="margin:0;font-size:14px;color:#CAA893">{{ t.waitlistNote }}</p></sc-if>
           </div>
 
           <div style="display:flex;flex-direction:column;gap:8px">
@@ -782,7 +780,7 @@
   <footer class="r-pb" style="background:#1A1410;color:#CAA893;padding:48px 24px">
     <div class="r-stack" style="max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap">
       <img src="assets/logo.svg" alt="{{ t.logoAlt }}" width="92" height="36" style="width:92px;height:auto">
-      <p style="margin:0;font-size:14px;display:flex;align-items:center"><img class="eb-flag" src="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/kz.svg" alt="{{ t.kz }}" width="16" height="12">Астана · Алматы</p>
+      <p style="margin:0;font-size:14px;display:flex;align-items:center"><img class="eb-flag" src="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/kz.svg" alt="{{ t.kz }}" width="16" height="12">Астана</p>
       <div class="r-wrap" style="display:flex;gap:24px;font-size:14px">
         <a href="{{ waHref }}" target="_blank" rel="noopener" style="color:#CAA893">{{ cfg.phoneFmt }}</a>
         <a href="privacy.html" data-privacy style="color:#CAA893">{{ t.privacy }}</a>
@@ -802,7 +800,7 @@
   </sc-if>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;seatsLeft&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:9,&quot;min&quot;:0,&quot;max&quot;:28,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Данные&quot;},&quot;showAlmaty&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Данные&quot;},&quot;demoSubmit&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;success&quot;,&quot;options&quot;:[&quot;success&quot;,&quot;error&quot;],&quot;tsType&quot;:&quot;'success' | 'error'&quot;,&quot;section&quot;:&quot;Демо формы (без Apps Script)&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;seatsLeft&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:9,&quot;min&quot;:0,&quot;max&quot;:28,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Данные&quot;},&quot;demoSubmit&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;default&quot;:&quot;success&quot;,&quot;options&quot;:[&quot;success&quot;,&quot;error&quot;],&quot;tsType&quot;:&quot;'success' | 'error'&quot;,&quot;section&quot;:&quot;Демо формы (без Apps Script)&quot;}}">
 class Component extends DCLogic {
   constructor(props) {
     super(props);
@@ -1129,7 +1127,7 @@ class Component extends DCLogic {
 
   renderVals() {
     const S = this.state, F = S.form, C = this.CFG, t = this.t();
-    const seatsLeft = this.props.seatsLeft ?? 9, showAlmaty = this.props.showAlmaty ?? true;
+    const seatsLeft = this.props.seatsLeft ?? 9, showAlmaty = false;
     const returning = F.returning === 'Да';
     const wa = `https://wa.me/${C.phone}?text=${encodeURIComponent(t.waText)}`;
     const waFallback = this.waLeadUrl(F, '');
