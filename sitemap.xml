@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://emptybowl.kz/</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://emptybowl.kz/"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://emptybowl.kz/?lang=kk"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emptybowl.kz/"/>
+    <image:image><image:loc>https://emptybowl.kz/assets/og-v2.jpg</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-01.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-21.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-02.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-03.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-20.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-17.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-04.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-05.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-23.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-06.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-07.webp</image:loc></image:image>
+    <image:image><image:loc>https://emptybowl.kz/assets/community/community-22.webp</image:loc></image:image>
+  </url>
+  <url>
+    <loc>https://emptybowl.kz/?lang=kk</loc>
+    <lastmod>2026-11-09</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://emptybowl.kz/"/>
+    <xhtml:link rel="alternate" hreflang="kk" href="https://emptybowl.kz/?lang=kk"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://emptybowl.kz/"/>
+  </url>
+</urlset>

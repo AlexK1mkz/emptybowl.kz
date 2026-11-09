@@ -1,0 +1,11 @@
+User-agent: *
+Allow: /
+Disallow: /apps-script/
+Disallow: /_ds/
+Disallow: /uploads/
+Disallow: /*.dc.html
+Disallow: /*%7B%7B
+Disallow: /*{{
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&fbclid&gclid&yclid
+
+Sitemap: https://emptybowl.kz/sitemap.xml
