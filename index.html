@@ -123,7 +123,7 @@
       body{font-size:16px}
       .d-only{display:none !important}
       .m-only{display:block !important}
-      .r-hero{grid-template-columns:1fr !important;padding:88px 20px 48px !important;min-height:0 !important}
+      .r-hero{grid-template-columns:1fr !important;padding:20px 20px 40px !important;min-height:0 !important}
       .r-sec{padding:56px 20px !important}
       .r-grid,.r-2,.r-3{grid-template-columns:1fr !important;gap:40px !important}
       .r-stack{flex-direction:column !important;align-items:stretch !important}
@@ -156,8 +156,30 @@
       .eb-report-h{font-size:32px !important}
       .eb-report-pts li{padding:14px 8px 14px 0 !important}
       .eb-report-pts li span:first-child{font-size:17px !important}
-      .eb-when-d{font-size:30px !important}
-      .eb-when>span:first-child{padding:14px 16px !important;gap:10px !important}
+      .eb-when-d{font-size:28px !important}
+      .eb-when{width:100% !important}
+      .eb-when>span:last-child{flex:1}
+      .d-inl{display:none !important}.m-inl{display:inline !important}
+      .eb-hero-vid{width:100% !important;max-width:none !important}
+      .eb-hero-vid>div{width:64vw;max-width:260px;margin:0 auto}
+      .eb-hero-vid figcaption{font-size:12px !important}
+      .eb-seats{font-size:12px !important}
+      .eb-day{flex-direction:row !important;align-items:baseline !important;gap:16px !important;padding:18px 0 !important}
+      .eb-day>div:first-child{min-width:0 !important;width:92px;flex-shrink:0;flex-direction:column;align-items:flex-start !important;gap:4px !important}
+      .eb-day>div:first-child>span:last-child{font-size:13px !important}
+      .eb-day>div:last-child span:first-child{font-size:17px !important}
+      .eb-day>div:last-child span:last-child{font-size:14px !important}
+      .eb-pearls{gap:12px !important}
+      .eb-pearls .eb-acc{padding:18px 20px !important;gap:8px !important}
+      .eb-pearls .eb-acc>span:first-child>span:first-child{width:32px !important;height:32px !important;font-size:11px !important}
+      .eb-pearls .eb-acc>span:last-child{font-size:15px !important}
+      .eb-pearls [id^=pearl-]{padding:0 20px 20px !important;font-size:15px !important}
+      .eb-results{gap:10px !important}
+      .eb-results>div{flex-direction:row !important;align-items:center !important;padding:16px 18px !important;gap:14px !important;border-radius:16px !important}
+      .eb-results>div>span{flex-shrink:0;width:34px !important;height:34px !important;font-size:11px !important}
+      .eb-results>div>p{font-size:16px !important}
+      .r-hero>div:first-child{gap:20px !important}
+      .eb-when>span:first-child{padding:12px 14px !important;gap:8px !important}
       .eb-when>span:last-child{padding:10px 14px !important}
       .eb-when>span:last-child>span:first-child{font-size:13px !important}
     }
@@ -215,8 +237,8 @@
           <span style="display:flex;flex-direction:column;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.35;color:#CAA893"><span style="color:#F4ECE2">{{ t.heroMonth }}</span><span>{{ t.heroYear }}</span></span>
         </span>
         <span style="display:flex;flex-direction:column;justify-content:center;gap:6px;padding:12px 22px">
-          <span style="font-size:15px;font-weight:600">{{ t.heroWeek }}</span>
-          <sc-if value="{{ showSeatsLeft }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#C2502C"><span class="eb-live" style="width:8px;height:8px;border-radius:50%;background:#FF764C"></span>{{ seatsLeftText }}</span></sc-if>
+          <span style="font-size:15px;font-weight:600"><span class="d-inl">{{ t.heroWeek }}</span><span class="m-inl" style="display:none">{{ t.heroWeekShort }}</span></span>
+          <sc-if value="{{ showSeatsLeft }}" hint-placeholder-val="{{ true }}"><span class="eb-seats" style="display:flex;align-items:center;gap:8px;font-size:13px;white-space:nowrap;font-weight:600;color:#C2502C"><span class="eb-live" style="width:8px;height:8px;border-radius:50%;background:#FF764C"></span>{{ seatsLeftText }}</span></sc-if>
         </span>
       </a>
       <div class="m-only" style="display:none">
@@ -424,7 +446,7 @@
       <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563">{{ t.pearlsLabel }}</p>
       <h2 id="h-pearls" class="r-h2" style="margin:0 0 16px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;line-height:1.1">{{ t.pearlsH2 }}</h2>
       <p style="margin:0 0 40px;color:#6B5A4C;max-width:560px">{{ t.pearlsSub }}</p>
-      <div class="r-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:start">
+      <div class="r-grid eb-pearls" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px;align-items:start">
         <sc-for list="{{ pearls }}" as="p" hint-placeholder-count="9">
           <article class="eb-card" style="background:#E8DCCD;border-radius:20px;overflow:hidden">
             <button type="button" class="eb-acc" onClick="{{ p.onToggle }}" aria-expanded="{{ p.open }}" aria-controls="{{ p.panelId }}" style="width:100%;text-align:left;padding:28px;display:flex;flex-direction:column;gap:16px;transition:background .2s;min-height:44px">
@@ -450,7 +472,7 @@
       <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563">{{ t.resultLabel }}</p>
       <h2 id="h-result" class="r-h2" style="margin:0 0 16px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;line-height:1.1">{{ t.resultH2 }}</h2>
       <p style="margin:0 0 40px;color:#6B5A4C;max-width:640px;text-wrap:pretty">{{ t.resultIntro }}</p>
-      <div class="r-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
+      <div class="r-grid eb-results" style="display:grid;grid-template-columns:repeat(3,1fr);gap:32px">
         <sc-for list="{{ resultList }}" as="r" hint-placeholder-count="6">
           <div style="background:#E8DCCD;border-radius:20px;padding:28px;display:flex;flex-direction:column;gap:16px">
             <span aria-hidden="true" style="width:40px;height:40px;border-radius:50% 50% 45% 45%;border:1px solid #C9A24A;border-top-color:transparent;display:flex;align-items:center;justify-content:center;font-family:'Unbounded',sans-serif;font-weight:700;font-size:13px;color:#8A7563">{{ r.num }}</span>
@@ -535,7 +557,7 @@
       </div>
       <ol style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;position:relative">
         <sc-for list="{{ schedule }}" as="d" hint-placeholder-count="4">
-          <li class="r-stack r-tight" style="display:flex;gap:32px;padding:28px 0;border-top:1px solid #CAA893;align-items:baseline">
+          <li class="r-stack r-tight eb-day" style="display:flex;gap:32px;padding:28px 0;border-top:1px solid #CAA893;align-items:baseline">
             <div style="min-width:240px;display:flex;align-items:baseline;gap:12px"><span class="r-num" style="font-family:'Unbounded',sans-serif;font-weight:700;font-size:40px;line-height:1;font-variant-numeric:tabular-nums">{{ d.day }}</span><span style="font-size:16px;color:#6B5A4C">{{ d.weekday }}</span></div>
             <div style="display:flex;flex-direction:column;gap:4px"><span style="font-family:'Unbounded',sans-serif;font-size:20px;font-weight:700;font-variant-numeric:tabular-nums">{{ d.time }}</span><span style="font-size:16px;color:#6B5A4C">{{ d.note }}</span></div>
           </li>
@@ -871,7 +893,7 @@ class Component extends DCLogic {
       logoAlt: 'Пустая чаша', navAria: 'Разделы', langAria: 'Язык', menuAria: 'Меню', kz: 'Казахстан', es: 'Испания', de: 'Германия', fr: 'Франция', ca: 'Канада',
       nav: ['О семинаре', 'Ведущий', 'Расписание', 'Отзывы', 'Стоимость', 'Место'],
       cta: 'Забронировать место', ctaWa: 'Задать вопрос в WhatsApp',
-      heroLabel: 'Снова в Астане', heroDay: '4–7', heroMonth: 'февраля', heroYear: '2027', heroWeek: 'Чт — Вс · отель Alanda, Астана', heroWhenAria: '4–7 февраля 2027, Астана — смотреть расписание', hdrCity: 'Астана', h1a: 'Пустая', h1b: 'Чаша', heroBy: 'с Кириллом Ярхо',
+      heroLabel: 'Снова в Астане', heroDay: '4–7', heroMonth: 'февраля', heroYear: '2027', heroWeek: 'Чт — Вс · отель Alanda, Астана', heroWeekShort: 'Чт — Вс · Астана', heroWhenAria: '4–7 февраля 2027, Астана — смотреть расписание', hdrCity: 'Астана', h1a: 'Пустая', h1b: 'Чаша', heroBy: 'с Кириллом Ярхо',
       heroSub: 'Четыре дня в камерной группе, чтобы остановиться, услышать себя и увидеть то, что не видно изнутри привычной жизни. Без лекций и новых техник — через тишину, тело и живое присутствие.',
       fFormat: 'Формат', fFormatV: '4 дня', fGroup: 'Группа', fGroupV: 'Камерная — 28 человек', fPlace: 'Место', fPlaceV: 'Alanda, Астана',
       commLabel: 'Сообщество · Семинары 2024–2026', commLine: 'На семинары Кирилла в Казахстан приезжают из Испании, Китая, США, Европы, России, Вьетнама и Кыргызстана', commTitle: 'Семинар «Пустая Чаша»', commAlt: 'Участники семинара «Пустая Чаша»',
@@ -952,7 +974,7 @@ class Component extends DCLogic {
       logoAlt: 'Бос Кесе', navAria: 'Бөлімдер', langAria: 'Тіл', menuAria: 'Мәзір', kz: 'Қазақстан', es: 'Испания', de: 'Германия', fr: 'Франция', ca: 'Канада',
       nav: ['Семинар туралы', 'Жүргізуші', 'Кесте', 'Пікірлер', 'Құны', 'Өтетін орны'],
       cta: 'Орын брондау', ctaWa: 'WhatsApp арқылы сұрақ қою',
-      heroLabel: 'Қайтадан Астанада', heroDay: '4–7', heroMonth: 'ақпан', heroYear: '2027', heroWeek: 'Бс — Жс · Alanda қонақүйі, Астана', heroWhenAria: '2027 жылғы 4–7 ақпан, Астана — кестені көру', hdrCity: 'Астана', h1a: 'Бос', h1b: 'Кесе', heroBy: 'Кирилл Ярхомен бірге',
+      heroLabel: 'Қайтадан Астанада', heroDay: '4–7', heroMonth: 'ақпан', heroYear: '2027', heroWeek: 'Бс — Жс · Alanda қонақүйі, Астана', heroWeekShort: 'Бс — Жс · Астана', heroWhenAria: '2027 жылғы 4–7 ақпан, Астана — кестені көру', hdrCity: 'Астана', h1a: 'Бос', h1b: 'Кесе', heroBy: 'Кирилл Ярхомен бірге',
       heroSub: 'Шағын топпен төрт күн: тоқтап, өзіңізді тыңдап, әдеттегі өмірдің ішінен көрінбейтінді байқау үшін. Дәрістер мен жаңа техникаларсыз — тыныштық, дене және осы сәтте болу арқылы.',
       fFormat: 'Формат', fFormatV: '4 күн', fGroup: 'Топ', fGroupV: 'Шағын — 28 адам', fPlace: 'Өтетін орны', fPlaceV: 'Alanda, Астана',
       commLabel: 'Қауымдастық · 2024–2026 семинарлары', commLine: 'Кириллдің Қазақстандағы семинарларына Испания, Қытай, АҚШ, Еуропа, Ресей, Вьетнам және Қырғызстаннан келеді', commTitle: '«Бос Кесе» семинары', commAlt: '«Бос Кесе» семинарының қатысушылары',
@@ -1206,7 +1228,7 @@ class Component extends DCLogic {
       menuOpen: S.menuOpen, toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       waHref: wa, waFallbackHref: waFallback, waLeadHref: S.waLeadUrl || wa, tgHref: 'https://t.me/' + C.telegram.replace('@', ''), trackContact: () => this.track('Contact'),
       ripples: this.ripples, seminars,
-      podcastSrc: this.yt(C.podcastId), filmSrc: this.yt(C.filmId), atmSrc: this.yt(C.atmosphereId), reportPts: t.reportPts.map(([v, k]) => ({ v, k })), showSeatsLeft: (this.props.seatsLeft ?? 9) > 0, seatsLeftText: t.seats.replace('{n}', this.props.seatsLeft ?? 9).replace('{c}', C.capacity), reportSrc: this.yt(C.reportId), heroVidSrc: this.yt(C.shortReviewId) + '&autoplay=1&mute=1&loop=1&playlist=' + C.shortReviewId, shortSrc: this.yt(C.shortReviewId),
+      podcastSrc: this.yt(C.podcastId), filmSrc: this.yt(C.filmId), atmSrc: this.yt(C.atmosphereId), reportPts: t.reportPts.map(([v, k]) => ({ v, k })), showSeatsLeft: (this.props.seatsLeft ?? 9) > 0, seatsLeftText: t.seats.replace('{n}', this.props.seatsLeft ?? 9).replace('{c}', C.capacity), reportSrc: this.yt(C.reportId), heroVidSrc: this.yt(C.shortReviewId) + '&autoplay=1&mute=1&loop=1&cc_load_policy=0&iv_load_policy=3&playlist=' + C.shortReviewId, shortSrc: this.yt(C.shortReviewId),
       community: [...C.community, ...C.community].map(([n, w, h], i) => ({ src: `assets/community/community-${String(n).padStart(2, '0')}.webp`, alt: i < C.community.length ? t.commAlt : '', title: t.commTitle, w, h, style: `aspect-ratio:${w}/${h}` })),
       orgSrc: this.yt(C.organizerReview.id),
       showPriceIncl: !t.priceIncl.includes('[ВСТАВИТЬ'),
