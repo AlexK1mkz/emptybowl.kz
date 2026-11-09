@@ -144,10 +144,9 @@
       .r-wrap{flex-wrap:wrap}
       .r-mb{margin-bottom:28px !important}
       .eb-marq img{height:220px}
-      .eb-recap{display:flex !important;overflow-x:auto;scroll-snap-type:x mandatory;gap:16px !important;margin:0 -20px;padding:0 20px 8px;scrollbar-width:none;max-width:none !important;width:auto !important}
-      .eb-recap>*{flex:0 0 68%;scroll-snap-align:start}
-      .eb-recap-h{font-size:28px !important}
-      .eb-recap-wrap{margin-top:48px !important;padding-top:32px !important}
+      .eb-vcard{grid-template-columns:1fr !important;gap:24px !important;max-width:none !important}
+      .eb-vcard>div:first-child{width:220px;max-width:62vw}
+      .eb-vcard-h{font-size:28px !important}
       .r-dots{display:flex !important}
     }
     @media (prefers-reduced-motion:reduce){.eb-marq>img:nth-child(n+24){display:none}}
@@ -324,23 +323,6 @@
         <iframe src="{{ atmSrc }}" title="{{ t.atmCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe>
       </div>
       <p style="margin:12px 0 0;font-size:14px;color:#6B5A4C">{{ t.atmCap }}</p>
-      <div class="eb-recap-wrap r-grid" style="margin-top:72px;padding-top:48px;border-top:1px solid #CAA893;display:grid;grid-template-columns:5fr 7fr;gap:64px;align-items:center">
-        <div>
-          <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563">{{ t.recapLabel }}</p>
-          <h3 class="eb-recap-h" style="margin:0 0 24px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:44px;line-height:1.1;text-wrap:balance">{{ t.recapH }}</h3>
-          <p style="margin:0;font-size:17px;line-height:1.6;color:#6B5A4C;max-width:420px;text-wrap:pretty">{{ t.recapP }}</p>
-        </div>
-        <div class="eb-recap" style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;max-width:640px;width:100%;justify-self:end">
-            <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
-              <div style="position:relative;border-radius:24px;overflow:hidden;aspect-ratio:9/16;background:#1A1410;box-shadow:0 8px 32px rgba(26,20,16,.08)"><iframe src="{{ reportSrc }}" title="{{ t.reportCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
-              <figcaption style="font-size:14px;color:#6B5A4C">{{ t.reportCap }}</figcaption>
-            </figure>
-            <figure style="margin:0;display:flex;flex-direction:column;gap:12px">
-              <div style="position:relative;border-radius:24px;overflow:hidden;aspect-ratio:9/16;background:#1A1410;box-shadow:0 8px 32px rgba(26,20,16,.08)"><iframe src="{{ shortSrc }}" title="{{ t.shortCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
-              <figcaption style="font-size:14px;color:#6B5A4C">{{ t.shortCap }}</figcaption>
-            </figure>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -534,6 +516,15 @@
           </li>
         </sc-for>
         <div style="border-top:1px solid #CAA893"></div>
+        <li class="eb-vcard" style="margin-top:40px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:center">
+          <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:9/16;background:#1A1410;box-shadow:0 8px 32px rgba(26,20,16,.12)"><iframe src="{{ reportSrc }}" title="{{ t.reportCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+          <div>
+            <p style="margin:0 0 12px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563">{{ t.reportLabel }}</p>
+            <h3 class="eb-vcard-h" style="margin:0 0 16px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:36px;line-height:1.1;text-wrap:balance">{{ t.reportH }}</h3>
+            <p style="margin:0 0 24px;color:#6B5A4C;font-size:16px;line-height:1.6;text-wrap:pretty">{{ t.reportP }}</p>
+            <a href="#booking" class="eb-ghost" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;border:1.5px solid #1A1410;color:#1A1410;font-weight:600;font-size:14px;transition:all .2s">{{ t.cta }}</a>
+          </div>
+        </li>
       </ol>
     </div>
   </section>
@@ -630,6 +621,15 @@
         <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#CAA893">{{ t.bookingLabel }}</p>
         <h2 id="h-booking" class="r-h2" style="margin:0 0 24px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;line-height:1.1;color:#F4ECE2">{{ t.bookingH2 }}</h2>
         <p style="margin:0;color:#CAA893;max-width:420px;text-wrap:pretty">{{ t.bookingSub }}</p>
+        <div class="eb-vcard eb-vcard-dark" style="margin-top:40px;padding-top:32px;border-top:1px solid #4A3E38;display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px;align-items:center;max-width:460px">
+          <div style="position:relative;border-radius:18px;overflow:hidden;aspect-ratio:9/16;background:#332820"><iframe src="{{ shortSrc }}" title="{{ t.shortCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+          <div>
+            <p style="margin:0 0 12px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#CAA893">{{ t.reviewLabel1 }}</p>
+            <p style="margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.15;color:#F4ECE2;text-wrap:balance">{{ t.reviewH1 }}</p>
+            <p style="margin:0 0 16px;font-size:14px;line-height:1.55;color:#CAA893">{{ t.reviewP1 }}</p>
+            <sc-if value="{{ showSeatsLeft }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font-size:14px;font-weight:600;color:#FF764C">{{ seatsLeftText }}</p></sc-if>
+          </div>
+        </div>
         <div style="margin-top:40px;display:flex;flex-direction:column;gap:12px;font-size:14px;color:#CAA893">
           <span>{{ t.organizer }}</span>
           <a href="{{ waHref }}" target="_blank" rel="noopener" onClick="{{ trackContact }}" style="color:#F4ECE2;font-size:18px">{{ cfg.phoneFmt }}</a>
@@ -851,7 +851,7 @@ class Component extends DCLogic {
       heroSub: 'Четыре дня в камерной группе, чтобы остановиться, услышать себя и увидеть то, что не видно изнутри привычной жизни. Без лекций и новых техник — через тишину, тело и живое присутствие.',
       fFormat: 'Формат', fFormatV: '4 дня', fGroup: 'Группа', fGroupV: 'Камерная — 28 человек', fPlace: 'Место', fPlaceV: 'Alanda, Астана',
       commLabel: 'Сообщество · Семинары 2024–2026', commLine: 'На семинары Кирилла в Казахстан приезжают из Испании, Китая, США, Европы, России, Вьетнама и Кыргызстана', commTitle: 'Семинар «Пустая Чаша»', commAlt: 'Участники семинара «Пустая Чаша»',
-      atmH2: 'Посмотрите две минуты видео — так выглядит семинар изнутри', atmCap: 'Видео от Кирилла', recapLabel: 'Как это было', recapP: 'Два коротких видео: как проходили четыре дня в Астане и что говорят участники, когда всё уже позади.', recapH: 'Прошлый семинар в Астане — отчёт и живой отзыв', reportCap: 'Отчётное видео с семинара', shortCap: 'Отзыв после семинара',
+      atmH2: 'Посмотрите две минуты видео — так выглядит семинар изнутри', atmCap: 'Видео от Кирилла', reportCap: 'Отчётное видео с семинара', shortCap: 'Отзыв после семинара', reportLabel: '4 дня за 1 минуту', reportH: 'Так выглядят четыре дня изнутри', reportP: 'Практика, тишина, разговоры в паузах и ужин всей группой. Посмотрите, как прошёл прошлый семинар в Астане, — и почувствуйте, ваше ли это.', reviewLabel1: 'Перед тем как отправить заявку', reviewH1: 'Минута от того, кто уже прошёл семинар', reviewP1: 'Что человек уносит с собой после четырёх дней — своими словами.',
       teacherAlt: 'Кирилл Ярхо, ведущий семинара', bowlAlt: 'Поющая чаша', groupAlt: 'Группа семинара в кругу', mikeAlt: 'Майк Боксхолл с поющей чашей',
       datesH2: 'Ближайшие семинары в Казахстане', datesLong: '4–7 февраля 2027', soon: 'Скоро', recruiting: 'Идёт набор', datesTbd: 'Даты уточняются', seats: 'Осталось {n} из {c} мест', onMap: 'На карте', bookShort: 'Забронировать', beFirst: 'Узнать первым', hotelLine: 'Отель Alanda, пр. Тауелсиздик, 33',
       whyH2: 'Только пустую чашу можно наполнить', whyP: 'Мы приходим учиться за новым: знаниями, инструментами, ответами. Но когда чаша полна, в неё ничего не входит. «Пустая Чаша» — четыре дня, чтобы отложить то, что вы уже знаете о себе, и заметить то, что было не видно.', whyKz: 'По казахскому обычаю чай гостю наливают понемногу — чтобы была возможность подливать снова и снова. Пустое место в кесе — знак уважения и внимания к человеку.',
@@ -929,7 +929,7 @@ class Component extends DCLogic {
       heroSub: 'Шағын топпен төрт күн: тоқтап, өзіңізді тыңдап, әдеттегі өмірдің ішінен көрінбейтінді байқау үшін. Дәрістер мен жаңа техникаларсыз — тыныштық, дене және осы сәтте болу арқылы.',
       fFormat: 'Формат', fFormatV: '4 күн', fGroup: 'Топ', fGroupV: 'Шағын — 28 адам', fPlace: 'Өтетін орны', fPlaceV: 'Alanda, Астана',
       commLabel: 'Қауымдастық · 2024–2026 семинарлары', commLine: 'Кириллдің Қазақстандағы семинарларына Испания, Қытай, АҚШ, Еуропа, Ресей, Вьетнам және Қырғызстаннан келеді', commTitle: '«Бос Кесе» семинары', commAlt: '«Бос Кесе» семинарының қатысушылары',
-      atmH2: 'Екі минут бейне көріңіз — семинар іштей осылай көрінеді', atmCap: 'Кириллдің бейнесі', recapLabel: 'Бұл қалай өтті', recapP: 'Екі қысқа бейне: Астанадағы төрт күн қалай өтті және бәрі аяқталғаннан кейін қатысушылар не айтады.', recapH: 'Астанадағы өткен семинар — есеп және тірі пікір', reportCap: 'Семинардан есеп бейнесі', shortCap: 'Семинардан кейінгі пікір',
+      atmH2: 'Екі минут бейне көріңіз — семинар іштей осылай көрінеді', atmCap: 'Кириллдің бейнесі', reportCap: 'Семинардан есеп бейнесі', shortCap: 'Семинардан кейінгі пікір', reportLabel: '4 күн 1 минутта', reportH: 'Төрт күн іштей осылай көрінеді', reportP: 'Практика, тыныштық, үзілістегі әңгімелер және бүкіл топпен кешкі ас. Астанадағы өткен семинардың қалай өткенін көріңіз — және бұл сізге жақын ба, сезініңіз.', reviewLabel1: 'Өтінім жібермес бұрын', reviewH1: 'Семинардан өткен адамнан бір минут', reviewP1: 'Төрт күннен кейін адам өзімен бірге не алып кететіні — өз сөзімен.',
       teacherAlt: 'Кирилл Ярхо, семинар жүргізушісі', bowlAlt: 'Тибет кесесі', groupAlt: 'Семинар тобы шеңберде', mikeAlt: 'Майк Боксхолл тибет кесесімен',
       datesH2: 'Қазақстандағы алдағы семинарлар', datesLong: '2027 жылғы 4–7 ақпан', soon: 'Жақында', recruiting: 'Қабылдау жүріп жатыр', datesTbd: 'Күндері нақтыланады', seats: '{c} орынның {n}-і қалды', onMap: 'Картадан көру', bookShort: 'Орын брондау', beFirst: 'Бірінші болып білу', hotelLine: 'Alanda қонақүйі, Тәуелсіздік даңғылы, 33',
       whyH2: 'Тек бос кесені ғана толтыруға болады', whyP: 'Біз оқуға жаңа нәрсе үшін келеміз: білім, құралдар, жауаптар. Бірақ кесе толы болса, оған ештеңе сыймайды. «Бос Кесе» — өзіңіз туралы білетініңізді бір сәтке қоя тұрып, бұрын көрінбегенді байқауға арналған төрт күн.', whyKz: 'Қазақ дәстүрінде қонаққа шайды кесенің түбіне ғана құяды — қайта-қайта құйып, күтім көрсету үшін. Кеседегі бос орын — адамға деген құрмет пен ықыластың белгісі.',
@@ -1176,7 +1176,7 @@ class Component extends DCLogic {
       menuOpen: S.menuOpen, toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       waHref: wa, waFallbackHref: waFallback, waLeadHref: S.waLeadUrl || wa, tgHref: 'https://t.me/' + C.telegram.replace('@', ''), trackContact: () => this.track('Contact'),
       ripples: this.ripples, seminars,
-      podcastSrc: this.yt(C.podcastId), filmSrc: this.yt(C.filmId), atmSrc: this.yt(C.atmosphereId), reportSrc: this.yt(C.reportId), shortSrc: this.yt(C.shortReviewId),
+      podcastSrc: this.yt(C.podcastId), filmSrc: this.yt(C.filmId), atmSrc: this.yt(C.atmosphereId), showSeatsLeft: (this.props.seatsLeft ?? 9) > 0, seatsLeftText: t.seats.replace('{n}', this.props.seatsLeft ?? 9).replace('{c}', C.capacity), reportSrc: this.yt(C.reportId), shortSrc: this.yt(C.shortReviewId),
       community: [...C.community, ...C.community].map(([n, w, h], i) => ({ src: `assets/community/community-${String(n).padStart(2, '0')}.webp`, alt: i < C.community.length ? t.commAlt : '', title: t.commTitle, w, h, style: `aspect-ratio:${w}/${h}` })),
       orgSrc: this.yt(C.organizerReview.id),
       showPriceIncl: !t.priceIncl.includes('[ВСТАВИТЬ'),
