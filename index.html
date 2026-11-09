@@ -144,11 +144,24 @@
       .r-wrap{flex-wrap:wrap}
       .r-mb{margin-bottom:28px !important}
       .eb-marq img{height:220px}
-      .eb-vcard{grid-template-columns:1fr !important;gap:24px !important;max-width:none !important}
-      .eb-vcard>div:first-child{width:220px;max-width:62vw}
-      .eb-vcard-h{font-size:28px !important}
       .r-dots{display:flex !important}
     }
+    @keyframes ebLive{0%,100%{box-shadow:0 0 0 0 rgba(255,118,76,.55)}50%{box-shadow:0 0 0 6px rgba(255,118,76,0)}}
+    .eb-live{animation:ebLive 2s ease-in-out infinite}
+    .eb-when{transition:transform .2s,box-shadow .2s}.eb-when:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(26,20,16,.1) !important}
+    @media (max-width:1100px){.eb-report{grid-template-columns:240px minmax(0,1fr) !important;gap:40px !important;padding:36px !important}.eb-report-h{font-size:40px !important}}
+    @media (max-width:767px){
+      .eb-report{grid-template-columns:1fr !important;gap:28px !important;padding:24px 20px 28px !important;border-radius:24px !important;margin-top:8px !important}
+      .eb-report-vid{width:100%;max-width:300px;margin:0 auto}
+      .eb-report-h{font-size:32px !important}
+      .eb-report-pts li{padding:14px 8px 14px 0 !important}
+      .eb-report-pts li span:first-child{font-size:17px !important}
+      .eb-when-d{font-size:30px !important}
+      .eb-when>span:first-child{padding:14px 16px !important;gap:10px !important}
+      .eb-when>span:last-child{padding:10px 14px !important}
+      .eb-when>span:last-child>span:first-child{font-size:13px !important}
+    }
+    @media (prefers-reduced-motion:reduce){.eb-live{animation:none}}
     @media (prefers-reduced-motion:reduce){.eb-marq>img:nth-child(n+24){display:none}}
     @media (prefers-reduced-motion:reduce){.eb-up,.eb-ring,.eb-img{animation:none !important}.eb-ring{opacity:.35 !important}.eb-pause{opacity:1;transition:none}html{scroll-behavior:auto}}
   </style>
@@ -173,7 +186,7 @@
         <a href="{{ waHref }}" target="_blank" rel="noopener" aria-label="WhatsApp" onClick="{{ trackContact }}" style="width:44px;height:44px;border-radius:999px;border:1.5px solid #1A1410;display:flex;align-items:center;justify-content:center">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21l1.65-3.8a9 9 0 1 1 3.4 2.9L3 21"></path><path d="M9 10a.5.5 0 0 0 1 0V9a.5.5 0 0 0-1 0v1a5 5 0 0 0 5 5h1a.5.5 0 0 0 0-1h-1a.5.5 0 0 0 0 1"></path></svg>
         </a>
-        <a href="#booking" class="eb-cta d-nav" style="display:inline-flex;align-items:center;height:44px;padding:0 22px;border-radius:999px;background:#FF764C;color:#1A1410;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;transition:background .2s;white-space:nowrap">{{ t.cta }}</a>
+        <a href="#booking" class="eb-cta d-nav" style="display:inline-flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:48px;padding:0 24px;border-radius:999px;background:#FF764C;color:#1A1410;font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;transition:background .2s;white-space:nowrap;line-height:1.1">{{ t.cta }}<span style="font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:none;opacity:.8">{{ t.stickyDates }} · {{ t.hdrCity }}</span></a>
         <button type="button" class="m-only-flex" onClick="{{ toggleMenu }}" aria-label="{{ t.menuAria }}" aria-expanded="{{ menuOpen }}" style="display:none;width:44px;height:44px;border-radius:999px;border:1.5px solid #1A1410;align-items:center;justify-content:center">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"></path></svg>
         </button>
@@ -196,10 +209,21 @@
       <p style="margin:0;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563;display:flex;align-items:center"><img class="eb-flag" src="https://cdn.jsdelivr.net/npm/flag-icons@7.2.3/flags/4x3/kz.svg" alt="{{ t.kz }}" width="16" height="12"><span>{{ t.heroLabel }}</span></p>
       <h1 id="h1" class="r-h1" style="margin:0;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:88px;line-height:1;letter-spacing:-.01em">{{ t.h1a }} <em style="font-style:italic">{{ t.h1b }}</em></h1>
       <p style="margin:-12px 0 0;font-family:'Cormorant Garamond',serif;font-size:30px;line-height:1.2;color:#6B5A4C">{{ t.heroBy }}</p>
+      <a href="#schedule" class="eb-when" aria-label="{{ t.heroWhenAria }}" style="display:flex;align-items:stretch;width:fit-content;max-width:100%;border:1px solid #CAA893;border-radius:22px;overflow:hidden;background:rgba(255,255,255,.4);color:#1A1410;text-decoration:none;box-shadow:0 8px 24px rgba(26,20,16,.06)">
+        <span style="display:flex;align-items:center;gap:12px;padding:16px 22px;background:#1A1410;color:#F4ECE2">
+          <span class="eb-when-d" style="white-space:nowrap;font-family:'Unbounded',sans-serif;font-weight:700;font-size:40px;line-height:1;letter-spacing:-.02em;font-variant-numeric:tabular-nums">{{ t.heroDay }}</span>
+          <span style="display:flex;flex-direction:column;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;line-height:1.35;color:#CAA893"><span style="color:#F4ECE2">{{ t.heroMonth }}</span><span>{{ t.heroYear }}</span></span>
+        </span>
+        <span style="display:flex;flex-direction:column;justify-content:center;gap:6px;padding:12px 22px">
+          <span style="font-size:15px;font-weight:600">{{ t.heroWeek }}</span>
+          <sc-if value="{{ showSeatsLeft }}" hint-placeholder-val="{{ true }}"><span style="display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:#C2502C"><span class="eb-live" style="width:8px;height:8px;border-radius:50%;background:#FF764C"></span>{{ seatsLeftText }}</span></sc-if>
+        </span>
+      </a>
       <div class="m-only" style="display:none">
-        <div class="r-ratio" style="position:relative;aspect-ratio:4/5;border-radius:999px 999px 24px 24px;overflow:hidden;background:#E8DCCD">
-          <img class="eb-img" src="assets/teacher-hero.webp" alt="{{ t.teacherAlt }}" width="1200" height="1500" style="width:100%;height:100%;object-fit:cover;object-position:50% 15%" loading="eager">
-        </div>
+        <figure class="eb-hero-vid " style="position:relative;z-index:1;margin:0;width:100%;max-width:300px;margin:0 auto;display:flex;flex-direction:column;gap:12px">
+        <div style="position:relative;aspect-ratio:9/16;border-radius:32px;overflow:hidden;background:#1A1410;box-shadow:0 16px 48px rgba(26,20,16,.18)"><iframe src="{{ heroVidSrc }}" title="{{ t.heroVidCap }}" loading="eager" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+        <figcaption style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#6B5A4C;text-align:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"></path></svg>{{ t.heroVidCap }}</figcaption>
+      </figure>
       </div>
       <p style="margin:0;max-width:560px;font-size:18px;line-height:1.6;text-wrap:pretty">{{ t.heroSub }}</p>
       <div class="r-stack" style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
@@ -214,9 +238,10 @@
     </div>
     <div class="d-only eb-up" style="position:relative;display:flex;justify-content:center;align-items:center;min-height:560px">
       {{ ripples }}
-      <div style="position:relative;z-index:1;width:min(100%,420px);aspect-ratio:4/5;border-radius:999px 999px 24px 24px;overflow:hidden;background:#E8DCCD;box-shadow:0 8px 32px rgba(26,20,16,.08)">
-        <img class="eb-img" src="assets/teacher-hero.webp" alt="{{ t.teacherAlt }}" width="1200" height="1500" style="width:100%;height:100%;object-fit:cover;object-position:50% 15%" loading="eager">
-      </div>
+      <figure class="eb-hero-vid " style="position:relative;z-index:1;margin:0;width:min(100%,340px);display:flex;flex-direction:column;gap:12px">
+        <div style="position:relative;aspect-ratio:9/16;border-radius:32px;overflow:hidden;background:#1A1410;box-shadow:0 16px 48px rgba(26,20,16,.18)"><iframe src="{{ heroVidSrc }}" title="{{ t.heroVidCap }}" loading="eager" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+        <figcaption style="display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:#6B5A4C;text-align:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5L6 9H2v6h4l5 4V5z"></path><path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14"></path></svg>{{ t.heroVidCap }}</figcaption>
+      </figure>
     </div>
     <!-- силуэт Астаны -->
     <svg aria-hidden="true" viewBox="0 0 1200 120" preserveAspectRatio="none" style="position:absolute;left:0;right:0;bottom:0;width:100%;height:120px;opacity:.12;pointer-events:none" fill="none" stroke="#1A1410" stroke-width="1.5" stroke-linejoin="round">
@@ -516,16 +541,23 @@
           </li>
         </sc-for>
         <div style="border-top:1px solid #CAA893"></div>
-        <li class="eb-vcard" style="margin-top:40px;display:grid;grid-template-columns:240px minmax(0,1fr);gap:32px;align-items:center">
-          <div style="position:relative;border-radius:20px;overflow:hidden;aspect-ratio:9/16;background:#1A1410;box-shadow:0 8px 32px rgba(26,20,16,.12)"><iframe src="{{ reportSrc }}" title="{{ t.reportCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
-          <div>
-            <p style="margin:0 0 12px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563">{{ t.reportLabel }}</p>
-            <h3 class="eb-vcard-h" style="margin:0 0 16px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:36px;line-height:1.1;text-wrap:balance">{{ t.reportH }}</h3>
-            <p style="margin:0 0 24px;color:#6B5A4C;font-size:16px;line-height:1.6;text-wrap:pretty">{{ t.reportP }}</p>
-            <a href="#booking" class="eb-ghost" style="display:inline-flex;align-items:center;justify-content:center;height:52px;padding:0 28px;border-radius:999px;border:1.5px solid #1A1410;color:#1A1410;font-weight:600;font-size:14px;transition:all .2s">{{ t.cta }}</a>
-          </div>
-        </li>
       </ol>
+      <div class="eb-report" style="grid-column:1/-1;margin-top:24px;background:#F4ECE2;border-radius:32px;padding:48px;display:grid;grid-template-columns:300px minmax(0,1fr);gap:64px;align-items:center;position:relative;overflow:hidden;box-shadow:0 12px 40px rgba(26,20,16,.06)">
+        <svg aria-hidden="true" viewBox="0 0 200 200" style="position:absolute;right:-60px;bottom:-60px;width:320px;height:320px;opacity:.10;pointer-events:none" fill="none" stroke="#C9A24A" stroke-width="1"><circle cx="100" cy="100" r="96"></circle><circle cx="100" cy="100" r="72"></circle><circle cx="100" cy="100" r="48"></circle></svg>
+        <div class="eb-report-vid" style="position:relative;border-radius:24px;overflow:hidden;aspect-ratio:9/16;background:#1A1410;box-shadow:0 16px 40px rgba(26,20,16,.18)"><iframe src="{{ reportSrc }}" title="{{ t.reportCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
+        <div style="position:relative">
+          <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#8A7563;display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:#FF764C"></span>{{ t.reportLabel }}</p>
+          <h3 class="eb-report-h" style="margin:0 0 20px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:52px;line-height:1.05;text-wrap:balance">{{ t.reportH }}</h3>
+          <p style="margin:0 0 32px;color:#6B5A4C;font-size:18px;line-height:1.6;max-width:520px;text-wrap:pretty">{{ t.reportP }}</p>
+          <ul class="eb-report-pts" style="list-style:none;margin:0 0 36px;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid #CAA893;border-bottom:1px solid #CAA893">
+            <sc-for list="{{ reportPts }}" as="r" hint-placeholder-count="3"><li style="padding:18px 16px 18px 0"><span style="display:block;font-family:'Unbounded',sans-serif;font-weight:700;font-size:22px;line-height:1.1">{{ r.v }}</span><span style="display:block;margin-top:6px;font-size:13px;color:#6B5A4C">{{ r.k }}</span></li></sc-for>
+          </ul>
+          <div class="r-stack" style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+            <a href="#booking" class="eb-cta r-full" style="display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 32px;border-radius:999px;background:#FF764C;color:#1A1410;font-weight:700;font-size:14px;letter-spacing:.1em;text-transform:uppercase;transition:all .2s">{{ t.cta }}</a>
+            <a href="{{ waHref }}" target="_blank" rel="noopener" onClick="{{ trackContact }}" class="eb-ghost r-full" style="display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:999px;border:1.5px solid #1A1410;color:#1A1410;font-weight:600;font-size:14px;transition:all .2s">{{ t.ctaWa }}</a>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -621,15 +653,7 @@
         <p style="margin:0 0 16px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#CAA893">{{ t.bookingLabel }}</p>
         <h2 id="h-booking" class="r-h2" style="margin:0 0 24px;font-family:'Cormorant Garamond',serif;font-weight:500;font-size:56px;line-height:1.1;color:#F4ECE2">{{ t.bookingH2 }}</h2>
         <p style="margin:0;color:#CAA893;max-width:420px;text-wrap:pretty">{{ t.bookingSub }}</p>
-        <div class="eb-vcard eb-vcard-dark" style="margin-top:40px;padding-top:32px;border-top:1px solid #4A3E38;display:grid;grid-template-columns:180px minmax(0,1fr);gap:24px;align-items:center;max-width:460px">
-          <div style="position:relative;border-radius:18px;overflow:hidden;aspect-ratio:9/16;background:#332820"><iframe src="{{ shortSrc }}" title="{{ t.shortCap }}" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture; fullscreen" allowFullScreen="{{ true }}" style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>
-          <div>
-            <p style="margin:0 0 12px;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:#CAA893">{{ t.reviewLabel1 }}</p>
-            <p style="margin:0 0 12px;font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1.15;color:#F4ECE2;text-wrap:balance">{{ t.reviewH1 }}</p>
-            <p style="margin:0 0 16px;font-size:14px;line-height:1.55;color:#CAA893">{{ t.reviewP1 }}</p>
-            <sc-if value="{{ showSeatsLeft }}" hint-placeholder-val="{{ true }}"><p style="margin:0;font-size:14px;font-weight:600;color:#FF764C">{{ seatsLeftText }}</p></sc-if>
-          </div>
-        </div>
+        <sc-if value="{{ showSeatsLeft }}" hint-placeholder-val="{{ true }}"><p style="margin:24px 0 0;display:flex;align-items:center;gap:10px;font-size:15px;font-weight:600;color:#FF764C"><span class="eb-live" style="width:8px;height:8px;border-radius:50%;background:#FF764C"></span>{{ seatsLeftText }}</p></sc-if>
         <div style="margin-top:40px;display:flex;flex-direction:column;gap:12px;font-size:14px;color:#CAA893">
           <span>{{ t.organizer }}</span>
           <a href="{{ waHref }}" target="_blank" rel="noopener" onClick="{{ trackContact }}" style="color:#F4ECE2;font-size:18px">{{ cfg.phoneFmt }}</a>
@@ -847,11 +871,11 @@ class Component extends DCLogic {
       logoAlt: 'Пустая чаша', navAria: 'Разделы', langAria: 'Язык', menuAria: 'Меню', kz: 'Казахстан', es: 'Испания', de: 'Германия', fr: 'Франция', ca: 'Канада',
       nav: ['О семинаре', 'Ведущий', 'Расписание', 'Отзывы', 'Стоимость', 'Место'],
       cta: 'Забронировать место', ctaWa: 'Задать вопрос в WhatsApp',
-      heroLabel: 'Снова в Астане · 4–7 февраля 2027', h1a: 'Пустая', h1b: 'Чаша', heroBy: 'с Кириллом Ярхо',
+      heroLabel: 'Снова в Астане', heroDay: '4–7', heroMonth: 'февраля', heroYear: '2027', heroWeek: 'Чт — Вс · отель Alanda, Астана', heroWhenAria: '4–7 февраля 2027, Астана — смотреть расписание', hdrCity: 'Астана', h1a: 'Пустая', h1b: 'Чаша', heroBy: 'с Кириллом Ярхо',
       heroSub: 'Четыре дня в камерной группе, чтобы остановиться, услышать себя и увидеть то, что не видно изнутри привычной жизни. Без лекций и новых техник — через тишину, тело и живое присутствие.',
       fFormat: 'Формат', fFormatV: '4 дня', fGroup: 'Группа', fGroupV: 'Камерная — 28 человек', fPlace: 'Место', fPlaceV: 'Alanda, Астана',
       commLabel: 'Сообщество · Семинары 2024–2026', commLine: 'На семинары Кирилла в Казахстан приезжают из Испании, Китая, США, Европы, России, Вьетнама и Кыргызстана', commTitle: 'Семинар «Пустая Чаша»', commAlt: 'Участники семинара «Пустая Чаша»',
-      atmH2: 'Посмотрите две минуты видео — так выглядит семинар изнутри', atmCap: 'Видео от Кирилла', reportCap: 'Отчётное видео с семинара', shortCap: 'Отзыв после семинара', reportLabel: '4 дня за 1 минуту', reportH: 'Так выглядят четыре дня изнутри', reportP: 'Практика, тишина, разговоры в паузах и ужин всей группой. Посмотрите, как прошёл прошлый семинар в Астане, — и почувствуйте, ваше ли это.', reviewLabel1: 'Перед тем как отправить заявку', reviewH1: 'Минута от того, кто уже прошёл семинар', reviewP1: 'Что человек уносит с собой после четырёх дней — своими словами.',
+      atmH2: 'Посмотрите две минуты видео — так выглядит семинар изнутри', atmCap: 'Видео от Кирилла', reportCap: 'Отчётное видео с семинара', shortCap: 'Отзыв после семинара', reportLabel: 'Прошлый семинар · Астана', reportH: 'Четыре дня — за одну минуту', reportP: 'Расписание — это цифры. А вот как эти дни ощущаются изнутри: живые моменты прошлого семинара и слова участников. Посмотрите — и почувствуйте, ваше ли это.', reportPts: [['4 дня', 'один путь от начала до конца'], ['28', 'человек в группе — не больше'], ['0', 'тетрадей и домашних заданий']], heroVidCap: 'Отзыв участника · Астана — включите звук',
       teacherAlt: 'Кирилл Ярхо, ведущий семинара', bowlAlt: 'Поющая чаша', groupAlt: 'Группа семинара в кругу', mikeAlt: 'Майк Боксхолл с поющей чашей',
       datesH2: 'Ближайшие семинары в Казахстане', datesLong: '4–7 февраля 2027', soon: 'Скоро', recruiting: 'Идёт набор', datesTbd: 'Даты уточняются', seats: 'Осталось {n} из {c} мест', onMap: 'На карте', bookShort: 'Забронировать', beFirst: 'Узнать первым', hotelLine: 'Отель Alanda, пр. Тауелсиздик, 33',
       whyH2: 'Только пустую чашу можно наполнить', whyP: 'Мы приходим учиться за новым: знаниями, инструментами, ответами. Но когда чаша полна, в неё ничего не входит. «Пустая Чаша» — четыре дня, чтобы отложить то, что вы уже знаете о себе, и заметить то, что было не видно.', whyKz: 'По казахскому обычаю чай гостю наливают понемногу — чтобы была возможность подливать снова и снова. Пустое место в кесе — знак уважения и внимания к человеку.',
@@ -900,11 +924,14 @@ class Component extends DCLogic {
         ['Это психотерапия или лечение?', 'Нет. «Пустая Чаша» не является медицинской или психотерапевтической услугой и не заменяет работу с врачом или психотерапевтом.'],
         ['Нужно ли рассказывать группе что-то личное?', 'Нет. Границы открытости каждый определяет сам. Большая часть работы проходит в тишине и через тело, а не через разговор.'],
         ['Можно прийти только на часть программы?', 'Нет. Ценность формата — в последовательном прохождении всех четырёх дней: группа работает как единое пространство.'],
-        ['Можно прийти с супругом, другом или партнёром?', '[ВСТАВИТЬ — ответ организатора]'],
-        ['Что взять с собой?', '[ВСТАВИТЬ — одежда, плед, вода и т. п.]'],
-        ['Можно ли вернуть или перенести предоплату?', '[ВСТАВИТЬ — условия возврата]'],
-        ['Как забронировать проживание в Alanda по спеццене?', '[ВСТАВИТЬ — кодовое слово / контакт отеля]'],
-        ['Можно оплатить Kaspi или в рассрочку?', '[ВСТАВИТЬ]']
+        ['На каком языке проходит семинар?', 'На русском. Знать термины или читать книги Майка Боксхолла заранее не нужно.'],
+        ['Можно прийти с супругом, другом или партнёром?', 'Можно — каждый участник оформляет свою заявку. Важно, чтобы оба были готовы пройти все четыре дня.'],
+        ['Что будет после заявки?', 'Откроется WhatsApp с Динарой — сообщение уже заполнено. Она ответит на вопросы, расскажет об условиях и пришлёт реквизиты. Предоплата 250 000 ₸ закрепляет место, остаток — за 2 недели до начала. Заявка ни к чему не обязывает.'],
+        ['Можно оплатить Kaspi или в рассрочку?', 'Способ оплаты обсуждается с Динарой до предоплаты. Напишите, как вам удобнее, — она подскажет доступные варианты.'],
+        ['Можно ли вернуть или перенести предоплату?', 'Условия возврата и переноса Динара проговаривает в WhatsApp до оплаты. Вы вносите предоплату только тогда, когда условия понятны и подходят.'],
+        ['Я приезжаю из другого города. Как всё организовать?', 'Семинар проходит в отеле Alanda, пр. Тауелсиздик, 33. Удобнее всего жить там же по спеццене для участников — не придётся тратить время на дорогу между днями.'],
+        ['Как забронировать проживание в Alanda по спеццене?', 'Отметьте в заявке «Нужно проживание в отеле Alanda по спеццене» — Динара пришлёт условия и поможет с бронью.'],
+        ['Что взять с собой?', 'Удобную одежду, в которой комфортно сидеть и двигаться, тёплые носки, бутылку воды и блокнот. Если понадобится что-то ещё — Динара напишет заранее.']
       ],
       bookingLabel: 'Заявка', bookingH2: 'Забронируйте место', bookingSub: 'Сначала заявка, потом оплата. Группа до 28 человек, и нам важно, чтобы каждый понимал формат и был готов на все четыре дня. После отправки откроется WhatsApp — там Динара ответит на вопросы и пришлёт реквизиты для предоплаты.', organizer: 'Организатор',
       fName: 'Имя и фамилия', fPhone: 'Телефон (WhatsApp)', fCity: 'Город семинара', fReturning: 'Был(а) на семинаре ранее?', yes: 'Да', noFirst: 'Нет, впервые', addDetails: '+ Добавить детали', fResidence: 'Город проживания', fHotel: 'Нужно проживание в отеле Alanda по спеццене', fSource: 'Откуда узнали о семинаре', choose: 'Выберите', srcFriends: 'От друзей', srcBefore: 'Был(а) ранее', srcOther: 'Другое', fComment: 'Вопрос организатору',
@@ -925,11 +952,11 @@ class Component extends DCLogic {
       logoAlt: 'Бос Кесе', navAria: 'Бөлімдер', langAria: 'Тіл', menuAria: 'Мәзір', kz: 'Қазақстан', es: 'Испания', de: 'Германия', fr: 'Франция', ca: 'Канада',
       nav: ['Семинар туралы', 'Жүргізуші', 'Кесте', 'Пікірлер', 'Құны', 'Өтетін орны'],
       cta: 'Орын брондау', ctaWa: 'WhatsApp арқылы сұрақ қою',
-      heroLabel: 'Қайтадан Астанада · 2027 жылғы 4–7 ақпан', h1a: 'Бос', h1b: 'Кесе', heroBy: 'Кирилл Ярхомен бірге',
+      heroLabel: 'Қайтадан Астанада', heroDay: '4–7', heroMonth: 'ақпан', heroYear: '2027', heroWeek: 'Бс — Жс · Alanda қонақүйі, Астана', heroWhenAria: '2027 жылғы 4–7 ақпан, Астана — кестені көру', hdrCity: 'Астана', h1a: 'Бос', h1b: 'Кесе', heroBy: 'Кирилл Ярхомен бірге',
       heroSub: 'Шағын топпен төрт күн: тоқтап, өзіңізді тыңдап, әдеттегі өмірдің ішінен көрінбейтінді байқау үшін. Дәрістер мен жаңа техникаларсыз — тыныштық, дене және осы сәтте болу арқылы.',
       fFormat: 'Формат', fFormatV: '4 күн', fGroup: 'Топ', fGroupV: 'Шағын — 28 адам', fPlace: 'Өтетін орны', fPlaceV: 'Alanda, Астана',
       commLabel: 'Қауымдастық · 2024–2026 семинарлары', commLine: 'Кириллдің Қазақстандағы семинарларына Испания, Қытай, АҚШ, Еуропа, Ресей, Вьетнам және Қырғызстаннан келеді', commTitle: '«Бос Кесе» семинары', commAlt: '«Бос Кесе» семинарының қатысушылары',
-      atmH2: 'Екі минут бейне көріңіз — семинар іштей осылай көрінеді', atmCap: 'Кириллдің бейнесі', reportCap: 'Семинардан есеп бейнесі', shortCap: 'Семинардан кейінгі пікір', reportLabel: '4 күн 1 минутта', reportH: 'Төрт күн іштей осылай көрінеді', reportP: 'Практика, тыныштық, үзілістегі әңгімелер және бүкіл топпен кешкі ас. Астанадағы өткен семинардың қалай өткенін көріңіз — және бұл сізге жақын ба, сезініңіз.', reviewLabel1: 'Өтінім жібермес бұрын', reviewH1: 'Семинардан өткен адамнан бір минут', reviewP1: 'Төрт күннен кейін адам өзімен бірге не алып кететіні — өз сөзімен.',
+      atmH2: 'Екі минут бейне көріңіз — семинар іштей осылай көрінеді', atmCap: 'Кириллдің бейнесі', reportCap: 'Семинардан есеп бейнесі', shortCap: 'Семинардан кейінгі пікір', reportLabel: 'Өткен семинар · Астана', reportH: 'Төрт күн — бір минутта', reportP: 'Кесте — бұл сандар. Ал бұл күндер іштей қалай сезілетіні — өткен семинардың тірі сәттері мен қатысушылардың сөздері. Көріңіз — және бұл сізге жақын ба, сезініңіз.', reportPts: [['4 күн', 'басынан аяғына дейін бір жол'], ['28', 'адам топта — артық емес'], ['0', 'жұмыс дәптері мен үй тапсырмасы']], heroVidCap: 'Қатысушының пікірі · Астана — дыбысты қосыңыз',
       teacherAlt: 'Кирилл Ярхо, семинар жүргізушісі', bowlAlt: 'Тибет кесесі', groupAlt: 'Семинар тобы шеңберде', mikeAlt: 'Майк Боксхолл тибет кесесімен',
       datesH2: 'Қазақстандағы алдағы семинарлар', datesLong: '2027 жылғы 4–7 ақпан', soon: 'Жақында', recruiting: 'Қабылдау жүріп жатыр', datesTbd: 'Күндері нақтыланады', seats: '{c} орынның {n}-і қалды', onMap: 'Картадан көру', bookShort: 'Орын брондау', beFirst: 'Бірінші болып білу', hotelLine: 'Alanda қонақүйі, Тәуелсіздік даңғылы, 33',
       whyH2: 'Тек бос кесені ғана толтыруға болады', whyP: 'Біз оқуға жаңа нәрсе үшін келеміз: білім, құралдар, жауаптар. Бірақ кесе толы болса, оған ештеңе сыймайды. «Бос Кесе» — өзіңіз туралы білетініңізді бір сәтке қоя тұрып, бұрын көрінбегенді байқауға арналған төрт күн.', whyKz: 'Қазақ дәстүрінде қонаққа шайды кесенің түбіне ғана құяды — қайта-қайта құйып, күтім көрсету үшін. Кеседегі бос орын — адамға деген құрмет пен ықыластың белгісі.',
@@ -978,11 +1005,14 @@ class Component extends DCLogic {
         ['Бұл психотерапия немесе емдеу ме?', 'Жоқ. «Бос Кесе» медициналық немесе психотерапиялық қызмет емес және дәрігермен не психотерапевтпен жұмысты алмастырмайды.'],
         ['Топқа жеке нәрселерді айту керек пе?', 'Жоқ. Ашықтық шегін әркім өзі белгілейді. Жұмыстың көп бөлігі әңгіме арқылы емес, тыныштықта және дене арқылы өтеді.'],
         ['Бағдарламаның бір бөлігіне ғана келуге бола ма?', 'Жоқ. Форматтың құндылығы — төрт күнді түгел, ретімен өтуде: топ біртұтас кеңістік ретінде жұмыс істейді.'],
-        ['Жұбайыммен, досыммен немесе серіктесіммен келуге бола ма?', '[ВСТАВИТЬ]'],
-        ['Өзіммен не алып келу керек?', '[ВСТАВИТЬ]'],
-        ['Алдын ала төлемді қайтаруға немесе ауыстыруға бола ма?', '[ВСТАВИТЬ]'],
-        ['Alanda қонақүйінде арнайы бағамен орынды қалай брондауға болады?', '[ВСТАВИТЬ]'],
-        ['Kaspi арқылы немесе бөліп төлеуге бола ма?', '[ВСТАВИТЬ]']
+        ['Семинар қай тілде өтеді?', 'Орыс тілінде. Терминдерді білу немесе Майк Боксхоллдың кітаптарын алдын ала оқу қажет емес.'],
+        ['Жұбайыммен, досыммен немесе серіктесіммен келуге бола ма?', 'Болады — әр қатысушы өз өтінімін толтырады. Екеуіңіз де төрт күнді түгел өтуге дайын болуыңыз маңызды.'],
+        ['Өтінімнен кейін не болады?', 'Динарамен WhatsApp ашылады — хабарлама дайын. Ол сұрақтарға жауап береді, шарттарды айтып, деректемелерді жібереді. 250 000 ₸ алдын ала төлем орынды бекітеді, қалғаны — басталуға 2 апта қалғанда. Өтінім сізді ештеңеге міндеттемейді.'],
+        ['Kaspi арқылы немесе бөліп төлеуге бола ма?', 'Төлем тәсілі алдын ала төлемге дейін Динарамен талқыланады. Өзіңізге қалай ыңғайлы екенін жазыңыз — ол қолжетімді нұсқаларды айтады.'],
+        ['Алдын ала төлемді қайтаруға немесе ауыстыруға бола ма?', 'Қайтару және ауыстыру шарттарын Динара төлемге дейін WhatsApp-та айтады. Алдын ала төлемді шарттар түсінікті әрі қолайлы болғанда ғана енгізесіз.'],
+        ['Мен басқа қаладан келемін. Бәрін қалай ұйымдастырамын?', 'Семинар Alanda қонақүйінде, Тәуелсіздік даңғылы, 33 мекенжайында өтеді. Қатысушыларға арналған арнайы бағамен сонда тұрған ыңғайлы — күндер арасында жолға уақыт кетпейді.'],
+        ['Alanda қонақүйінде арнайы бағамен орынды қалай брондауға болады?', 'Өтінімде «Alanda қонақүйінде арнайы бағамен тұру керек» деп белгілеңіз — Динара шарттарды жіберіп, брондауға көмектеседі.'],
+        ['Өзіммен не алып келу керек?', 'Отыруға және қозғалуға ыңғайлы киім, жылы шұлық, бір бөтелке су және дәптер. Тағы бір нәрсе керек болса — Динара алдын ала жазады.']
       ],
       bookingLabel: 'Өтінім', bookingH2: 'Орныңызды брондаңыз', bookingSub: 'Алдымен өтінім, содан кейін төлем. Топ 28 адамға дейін, және бізге әркімнің форматты түсініп, төрт күнге дайын болуы маңызды. Өтінім жіберілген соң WhatsApp ашылады — онда Динара сұрақтарға жауап беріп, алдын ала төлем деректемелерін жібереді.', organizer: 'Ұйымдастырушы',
       fName: 'Аты-жөніңіз', fPhone: 'Телефон (WhatsApp)', fCity: 'Семинар қаласы', fReturning: 'Бұрын семинарға қатыстыңыз ба?', yes: 'Иә', noFirst: 'Жоқ, алғаш рет', addDetails: '+ Толығырақ', fResidence: 'Тұратын қалаңыз', fHotel: 'Alanda қонақүйінде арнайы бағамен орын қажет', fSource: 'Біз туралы қайдан білдіңіз?', choose: 'Таңдаңыз', srcFriends: 'Достарымнан', srcBefore: 'Бұрын қатыстым', srcOther: 'Басқа', fComment: 'Ұйымдастырушыға сұрағыңыз',
@@ -1176,7 +1206,7 @@ class Component extends DCLogic {
       menuOpen: S.menuOpen, toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })), closeMenu: () => this.setState({ menuOpen: false }),
       waHref: wa, waFallbackHref: waFallback, waLeadHref: S.waLeadUrl || wa, tgHref: 'https://t.me/' + C.telegram.replace('@', ''), trackContact: () => this.track('Contact'),
       ripples: this.ripples, seminars,
-      podcastSrc: this.yt(C.podcastId), filmSrc: this.yt(C.filmId), atmSrc: this.yt(C.atmosphereId), showSeatsLeft: (this.props.seatsLeft ?? 9) > 0, seatsLeftText: t.seats.replace('{n}', this.props.seatsLeft ?? 9).replace('{c}', C.capacity), reportSrc: this.yt(C.reportId), shortSrc: this.yt(C.shortReviewId),
+      podcastSrc: this.yt(C.podcastId), filmSrc: this.yt(C.filmId), atmSrc: this.yt(C.atmosphereId), reportPts: t.reportPts.map(([v, k]) => ({ v, k })), showSeatsLeft: (this.props.seatsLeft ?? 9) > 0, seatsLeftText: t.seats.replace('{n}', this.props.seatsLeft ?? 9).replace('{c}', C.capacity), reportSrc: this.yt(C.reportId), heroVidSrc: this.yt(C.shortReviewId) + '&autoplay=1&mute=1&loop=1&playlist=' + C.shortReviewId, shortSrc: this.yt(C.shortReviewId),
       community: [...C.community, ...C.community].map(([n, w, h], i) => ({ src: `assets/community/community-${String(n).padStart(2, '0')}.webp`, alt: i < C.community.length ? t.commAlt : '', title: t.commTitle, w, h, style: `aspect-ratio:${w}/${h}` })),
       orgSrc: this.yt(C.organizerReview.id),
       showPriceIncl: !t.priceIncl.includes('[ВСТАВИТЬ'),
