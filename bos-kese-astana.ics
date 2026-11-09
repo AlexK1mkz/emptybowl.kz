@@ -4,12 +4,12 @@ PRODID:-//Empty Bowl Astana//emptybowl.kz//RU
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:eb-astana-2026@emptybowl.kz
-DTSTAMP:20261008T160000Z
-DTSTART:20261022T110000Z
-DTEND:20261025T090000Z
+UID:eb-astana-2027@emptybowl.kz
+DTSTAMP:20261109T120000Z
+DTSTART:20270204T110000Z
+DTEND:20270207T090000Z
 SUMMARY:«Бос Кесе» семинары, Кирилл Ярхо — Астана
-DESCRIPTION:Төрт күндік семинар. 22 қазан 16:00–21:00\, 23–24 қазан 9:30–20:30\, 25 қазан 9:30–14:00. Астана уақыты. Толығырақ: https://emptybowl.kz/
+DESCRIPTION:Төрт күндік семинар. 4 ақпан 16:00–21:00\, 5–6 ақпан 9:30–20:30\, 7 ақпан 9:30–14:00. Астана уақыты. Толығырақ: https://emptybowl.kz/
 LOCATION:Отель Alanda\, пр. Тауелсиздик\, 33\, Астана
 GEO:51.138759;71.463978
 URL:https://emptybowl.kz/

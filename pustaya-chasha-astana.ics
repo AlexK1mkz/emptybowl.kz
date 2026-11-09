@@ -4,12 +4,12 @@ PRODID:-//Empty Bowl Astana//emptybowl.kz//RU
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:eb-astana-2026@emptybowl.kz
-DTSTAMP:20261008T160000Z
-DTSTART:20261022T110000Z
-DTEND:20261025T090000Z
+UID:eb-astana-2027@emptybowl.kz
+DTSTAMP:20261109T120000Z
+DTSTART:20270204T110000Z
+DTEND:20270207T090000Z
 SUMMARY:Семинар «Пустая Чаша» с Кириллом Ярхо — Астана
-DESCRIPTION:Четыре дня семинара. 22 октября 16:00–21:00\, 23–24 октября 9:30–20:30\, 25 октября 9:30–14:00. Время астанинское. Подробности: https://emptybowl.kz/
+DESCRIPTION:Четыре дня семинара. 4 февраля 16:00–21:00\, 5–6 февраля 9:30–20:30\, 7 февраля 9:30–14:00. Время астанинское. Подробности: https://emptybowl.kz/
 LOCATION:Отель Alanda\, пр. Тауелсиздик\, 33\, Астана
 GEO:51.138759;71.463978
 URL:https://emptybowl.kz/
